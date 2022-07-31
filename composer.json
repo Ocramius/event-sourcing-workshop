@@ -1,0 +1,22 @@
+{
+    "$schema": "https://github.com/composer/composer/blob/ebac357c0a41359f3981098729042ed6dedc97ba/res/composer-schema.json#",
+    "name": "ocramius/event-sourcing-workshop",
+    "license": "AGPL-3.0-or-later",
+    "description": "A test application for trying out event-sourcing in PHP for the first time",
+    "type": "application",
+    "autoload": {
+        "psr-4": {
+            "EventSourcingWorkshop\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.1.8",
+        "doctrine/dbal": "^3.3.7",
+        "cuyz/valinor": "^0.12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.21",
+        "vimeo/psalm": "^4.24.0",
+        "qossmic/deptrac-shim": "^0.23.0"
+    }
+}

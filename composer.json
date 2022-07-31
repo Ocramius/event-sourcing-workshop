@@ -9,14 +9,31 @@
             "EventSourcingWorkshop\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "EventSourcingWorkshopTest\\": "test"
+        }
+    },
     "require": {
         "php": "^8.1.8",
+        "azjezz/psl": "^2.0.3",
+        "cuyz/valinor": "^0.12.0",
         "doctrine/dbal": "^3.3.7",
-        "cuyz/valinor": "^0.12.0"
+        "lcobucci/clock": "^2.2",
+        "ramsey/uuid": "^4.3.1"
     },
     "require-dev": {
+        "doctrine/coding-standard": "^9.0.0",
+        "doctrine/migrations": "^3.5",
         "phpunit/phpunit": "^9.5.21",
-        "vimeo/psalm": "^4.24.0",
-        "qossmic/deptrac-shim": "^0.23.0"
+        "psalm/plugin-phpunit": "^0.17.0",
+        "qossmic/deptrac-shim": "^0.23.0",
+        "vimeo/psalm": "^4.24.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

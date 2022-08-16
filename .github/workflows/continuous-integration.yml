@@ -5,7 +5,6 @@ on:
 
 env:
   DOCKER_IMAGE_TAG: ${{ github.sha }}
-  COMPOSE_FILE: 'docker-compose.yml:docker-compose.ci.yml'
   MOUNT_APP_VOLUME_LOCATION: '/nowhere' # disables mounting volumes in `docker-compose.yml`
 
 jobs:

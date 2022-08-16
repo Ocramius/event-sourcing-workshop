@@ -22,5 +22,5 @@ interface Policy
     public function __invoke(DomainEvent $event): array;
 
     /** @psalm-return class-string<HandledDomainEvent> */
-    public static function supportedDomainEvent(): string;
+    public function supportedDomainEvent(): string;
 }

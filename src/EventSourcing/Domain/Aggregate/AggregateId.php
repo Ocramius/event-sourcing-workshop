@@ -20,14 +20,4 @@ interface AggregateId
 
     /** @psalm-return class-string<AggregateType> */
     public function aggregateType(): string;
-
-    /**
-     * @psalm-param non-empty-string $id
-     *
-     * @psalm-pure
-     */
-    public static function fromString(string $id): static;
-
-    /** @psalm-pure */
-    public static function fromUuid(UuidInterface $id): static;
 }

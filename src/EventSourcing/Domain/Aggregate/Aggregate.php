@@ -32,15 +32,4 @@ interface Aggregate
      * @psalm-pure
      */
     public static function fromHistory(AggregateId $id, array $history): static;
-
-    /**
-     * This method will tell us the type of aggregate identifier to be used with this specific
-     * aggregate: useful when we look for when we de-serialize an aggregate from memory, but
-     * don't have the aggregate nor aggregate id instance, but just the aggregate class name.
-     *
-     * @return class-string<AggregateId<static>>
-     *
-     * @psalm-pure
-     */
-    public static function idType(): string;
 }

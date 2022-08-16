@@ -20,11 +20,22 @@ final class CreateEventStreamTable extends AbstractMigration
 CREATE TABLE event_stream (
     no INTEGER PRIMARY KEY AUTOINCREMENT,
     event_type VARCHAR(1024) NOT NULL,
-    aggregate_root_type VARCHAR(1024) DEFAULT NULL, -- @TODO add a check - if the aggregate root id is set, this should be set
-    aggregate_root_id VARBINARY(255) DEFAULT NULL, -- @TODO add a check - if the aggregate root id is set, this should be set
-    aggregate_root_version INT DEFAULT NULL, -- @TODO add a check - if the aggregate root id is set, this should be set
-    time_of_recording DATETIME NOT NULL, -- @TODO does this include microseconds?
-    payload JSON NOT NULL
+    aggregate_root_type VARCHAR(1024) DEFAULT NULL,
+    aggregate_root_id VARBINARY(255) DEFAULT NULL,
+    aggregate_root_version INT DEFAULT NULL,
+    time_of_recording DATETIME NOT NULL,
+    payload JSON NOT NULL,
+    CONSTRAINT aggregate_root_must_be_set_together CHECK (
+        (
+            aggregate_root_type IS NOT NULL
+            AND aggregate_root_id IS NOT NULL
+            AND aggregate_root_version IS NOT NULL
+        ) OR (
+            aggregate_root_type IS NULL
+            AND aggregate_root_id IS NULL
+            AND aggregate_root_version IS NULL
+        )
+    )
 )
 SQL
         );

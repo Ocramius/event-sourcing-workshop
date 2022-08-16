@@ -1,5 +1,6 @@
 {
     "extensions": [
+        "bcmath",
         "sqlite3"
     ]
 }

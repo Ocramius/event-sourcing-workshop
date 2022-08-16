@@ -27,7 +27,6 @@ jobs:
           context: .
           push: false
           tags: ghcr.io/ocramius/event-sourcing-workshop/sandbox:${{ github.sha }}
-          cache-to: type=registry,ref=ghcr.io/ocramius/event-sourcing-workshop/sandbox:ci-cache
           cache-from: |
             type=registry,ref=ghcr.io/ocramius/event-sourcing-workshop/sandbox:ci-cache
 

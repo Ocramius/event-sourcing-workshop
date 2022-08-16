@@ -1,0 +1,8 @@
+services:
+  sandbox:
+    image: ghcr.io/ocramius/event-sourcing-workshop/sandbox:${DOCKER_IMAGE_TAG}
+    build:
+      cache_from: 
+        - type=registry,ref=ghcr.io/ocramius/event-sourcing-workshop/sandbox:ci-cache
+      cache_to:
+        - type=registry,ref=ghcr.io/ocramius/event-sourcing-workshop/sandbox:ci-cache

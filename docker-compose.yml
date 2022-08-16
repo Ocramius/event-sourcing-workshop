@@ -1,0 +1,11 @@
+services:
+  sandbox:
+    image: ghcr.io/ocramius/event-sourcing-workshop/sandbox:${DOCKER_IMAGE_TAG:-local-dev}
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: sandbox
+    command: sleep infinity
+    volumes:
+      # The following allows disabling volume mounting for certain environments (like CI)
+      - .:${MOUNT_APP_VOLUME_LOCATION:-/app}:rw

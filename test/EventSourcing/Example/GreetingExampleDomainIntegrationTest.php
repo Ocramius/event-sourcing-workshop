@@ -31,6 +31,8 @@ use EventSourcingWorkshopTest\EventSourcing\Example\Infrastructure\Projection\Pe
 use EventSourcingWorkshopTest\EventSourcing\Integration\Support\EventSourcingTestHelper;
 use Lcobucci\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
+use Psl\Json;
+use Psl\Type;
 use StellaMaris\Clock\ClockInterface;
 
 use function Psl\Type\string;
@@ -161,9 +163,12 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         $this->dispatchCommand(new SayHello('greeting 1'));
         $greeting1Date = DateTimeImmutable::createFromFormat(
             DateTimeImmutable::RFC3339_EXTENDED,
-            string()->coerce(
-                $this->db->fetchOne('SELECT payload ->> \'$.raisedAt\' FROM event_stream ORDER BY no DESC LIMIT 1')
-            )
+            Json\typed(
+                Type\string()->assert($this->db->fetchOne('SELECT payload FROM event_stream ORDER BY no DESC LIMIT 1')),
+                Type\shape([
+                    'raisedAt' => Type\non_empty_string(),
+                ])
+            )['raisedAt']
         );
 
         self::assertNotFalse($greeting1Date);
@@ -171,9 +176,12 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         $this->dispatchCommand(new SayHello('greeting 2'));
         $greeting2Date = DateTimeImmutable::createFromFormat(
             DateTimeImmutable::RFC3339_EXTENDED,
-            string()->coerce(
-                $this->db->fetchOne('SELECT payload ->> \'$.raisedAt\' FROM event_stream ORDER BY no DESC LIMIT 1')
-            )
+            Json\typed(
+                Type\string()->assert($this->db->fetchOne('SELECT payload FROM event_stream ORDER BY no DESC LIMIT 1')),
+                Type\shape([
+                    'raisedAt' => Type\non_empty_string(),
+                ])
+            )['raisedAt']
         );
 
         self::assertNotFalse($greeting2Date);

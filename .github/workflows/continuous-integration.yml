@@ -22,6 +22,7 @@ jobs:
       - name: "Build docker containers"
         uses: docker/build-push-action@v2
         with:
+          load: true
           file: Dockerfile
           context: .
           push: false

@@ -1,0 +1,6 @@
+{
+    "$schema": "https://raw.githubusercontent.com/laminas/laminas-ci-matrix-action/3570ac97ef78044e1a617103c79f430cc02dbd60/laminas-ci.schema.json",
+    "extensions": [
+        "sqlite3"
+    ]
+}

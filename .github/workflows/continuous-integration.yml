@@ -27,8 +27,8 @@ jobs:
           context: .
           push: false
           tags: ghcr.io/ocramius/event-sourcing-workshop/sandbox:${{ github.sha }}
-          cache-from: |
-            type=registry,ref=ghcr.io/ocramius/event-sourcing-workshop/sandbox:ci-cache
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: "Run static analysis"
         run: docker-compose run --rm sandbox vendor/bin/psalm --no-progress --output-format=github

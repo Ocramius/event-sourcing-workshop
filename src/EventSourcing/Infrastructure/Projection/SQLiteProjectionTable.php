@@ -20,7 +20,7 @@ final class SQLiteProjectionTable implements ProjectionTable
 
     public function __construct(private readonly Connection $connection, DbTableProjectionDefinition $tableDefinition)
     {
-        $this->tableName  = $tableDefinition->tableName();
+        $this->tableName = $tableDefinition->tableName();
     }
 
     /** {@inheritDoc} */

@@ -32,8 +32,8 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Webmozart\Assert\Assert;
+
 use function array_map;
-use function get_class;
 use function Psl\Json\encode;
 use function Psl\Type\non_empty_string;
 use function Psl\Type\shape;
@@ -56,9 +56,7 @@ final class EventSourcingTestHelper
     public static function runDatabaseMigrations(Connection $connection, array $migrations): void
     {
         $dependencyFactory = DependencyFactory::fromConnection(
-            new ConfigurationArray([
-                'migrations' => $migrations,
-            ]),
+            new ConfigurationArray(['migrations' => $migrations]),
             new ExistingConnection($connection)
         );
 
@@ -76,7 +74,7 @@ final class EventSourcingTestHelper
     /** @psalm-param non-empty-list<DomainEvent> $events */
     public static function appendEvents(
         Connection $db,
-        array      $events
+        array $events
     ): void {
         /** @psalm-var array<non-empty-string, positive-int> */
         $aggregateVersions = [];
@@ -97,7 +95,7 @@ final class EventSourcingTestHelper
             $db->insert(
                 'event_stream',
                 [
-                    'event_type'             => get_class($event),
+                    'event_type'             => $event::class,
                     'aggregate_root_type'    => $aggregateType,
                     'aggregate_root_id'      => $aggregateId,
                     'aggregate_root_version' => $version,
@@ -107,22 +105,24 @@ final class EventSourcingTestHelper
                 ]
             );
 
-            if ($event instanceof AggregateDomainEvent && $version !== null) {
-                $aggregateVersions[$event->aggregate()->toUuid()->getBytes()] = $version + 1;
+            if (! ($event instanceof AggregateDomainEvent) || $version === null) {
+                continue;
             }
+
+            $aggregateVersions[$event->aggregate()->toUuid()->getBytes()] = $version + 1;
         }
     }
 
     /**
-     * @psalm-template AggregateType of Aggregate
-     *
      * @psalm-param non-empty-list<class-string<AggregateDomainEvent<AggregateType>>> $expectedEvents
      * @psalm-param non-empty-string                                                  $message
+     *
+     * @psalm-template AggregateType of Aggregate
      */
     public static function assertRaisedEventTypesSequence(
         Connection $db,
-        array      $expectedEvents,
-        string     $message = 'Given sequence of event matches what is stored in the whole event store'
+        array $expectedEvents,
+        string $message = 'Given sequence of event matches what is stored in the whole event store'
     ): void {
         PHPUnitAssertions::assertEquals(
             $expectedEvents,
@@ -142,19 +142,19 @@ SQL
     }
 
     /**
-     * @psalm-template AggregateType of Aggregate
-     *
      * @psalm-param list<AggregateDomainEvent<AggregateType>> $expected
      * @psalm-param list<AggregateDomainEvent<AggregateType>> $actual
      * @psalm-param non-empty-string                          $message
+     *
+     * @psalm-template AggregateType of Aggregate
      */
     public static function assertEquivalentEvents(
-        array  $expected,
-        array  $actual,
+        array $expected,
+        array $actual,
         string $message = 'Provided list of events are equivalent (ignoring the time at which they were raised)'
     ): void {
-        $convert = static fn(AggregateDomainEvent $event): array => [
-            'class'   => get_class($event),
+        $convert = static fn (AggregateDomainEvent $event): array => [
+            'class'   => $event::class,
             'payload' => $event->toArray(),
         ];
 
@@ -166,16 +166,18 @@ SQL
     }
 
     /**
-     * @psalm-template AggregateType of Aggregate
+     * @see            Aggregate
+     *
      * @psalm-param AggregateId<AggregateType> $id
+     *
      * @psalm-return list<AggregateDomainEvent<AggregateType>>
      *
-     * @see            Aggregate
+     * @psalm-template AggregateType of Aggregate
      */
     public static function fetchAllEventsForAggregate(
-        Connection       $db,
+        Connection $db,
         DeSerializeEvent $loadEvent,
-        AggregateId      $id,
+        AggregateId $id,
     ): array {
         return array_map(
             static function (array $row) use ($loadEvent): AggregateDomainEvent {
@@ -227,8 +229,8 @@ SQL
 
     public static function runProjector(
         DbTableProjectionDefinition $definition,
-        Connection                  $connection,
-        DeSerializeEvent            $loadEvent
+        Connection $connection,
+        DeSerializeEvent $loadEvent
     ): void {
         ProcessProjectionOnTable::forDefinition(
             $definition,
@@ -241,18 +243,17 @@ SQL
     }
 
     /**
-     * @param list<Policy<DomainEventType>> $policies
-     *
      * @see      DomainEvent
      *
-     * @template DomainEventType of DomainEvent
+     * @param list<Policy<DomainEventType>> $policies
      *
+     * @template DomainEventType of DomainEvent
      */
     public static function runPolicies(
-        Connection       $connection,
-        CommandBus       $commandBus,
+        Connection $connection,
+        CommandBus $commandBus,
         DeSerializeEvent $loadEvent,
-        array            $policies
+        array $policies
     ): void {
         (new ProcessPolicies(
             $policies,

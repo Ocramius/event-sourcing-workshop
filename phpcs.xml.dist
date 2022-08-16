@@ -13,5 +13,11 @@
     <file>./src</file>
     <file>./test</file>
 
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <!-- 
+        PHPCS doesn't currently understand the first-class callable syntax introduced in PHP 8.1.
+        See https://wiki.php.net/rfc/first_class_callable_syntax
+        -->
+        <exclude name="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking.UnpackingUsed"/>
+    </rule>
 </ruleset>

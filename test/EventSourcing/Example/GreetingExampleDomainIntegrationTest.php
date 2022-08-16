@@ -7,8 +7,6 @@ namespace EventSourcingWorkshopTest\EventSourcing\Example;
 use CuyZ\Valinor\MapperBuilder;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\PDO\SQLite\Driver;
-use Doctrine\DBAL\DriverManager;
 use EventSourcingWorkshop\Commanding\Infrastructure\CommandBus;
 use EventSourcingWorkshop\Commanding\Infrastructure\HandleCommandThroughGivenCommandHandlers;
 use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateRepository;
@@ -34,8 +32,7 @@ use EventSourcingWorkshopTest\EventSourcing\Integration\Support\EventSourcingTes
 use Lcobucci\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
 use StellaMaris\Clock\ClockInterface;
-use Symfony\Component\Messenger\Exception\HandlerFailedException;
-use Symfony\Component\Messenger\MessageBusInterface;
+
 use function Psl\Type\string;
 
 /** @coversNothing */

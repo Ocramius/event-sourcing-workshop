@@ -32,15 +32,15 @@ final class CommandNotHandledTest extends TestCase
             ->getMock();
 
         $commandHandler1->method('handlesCommand')
-            ->willReturn(get_class($command1));
+            ->willReturn($command1::class);
         $commandHandler2->method('handlesCommand')
-            ->willReturn(get_class($command2));
-        
+            ->willReturn($command2::class);
+
         $exception = CommandNotHandled::fromCommandAndConfiguredCommandHandlers(
             $command3,
             [$commandHandler1, $commandHandler2]
         );
-        
+
         self::assertSame($command3, $exception->command);
         self::assertSame(
             <<<'MESSAGE'

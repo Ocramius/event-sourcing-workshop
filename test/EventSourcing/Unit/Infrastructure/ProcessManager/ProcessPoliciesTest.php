@@ -50,15 +50,15 @@ final class ProcessPoliciesTest extends TestCase
             ->method('__invoke')
             ->with(self::equalTo($event3))
             ->willReturn([]);
-        
+
         $commandBus = $this->createMock(CommandBus::class);
-        
+
         $commandBus->expects(self::exactly(3))
             ->method('__invoke')
             ->with(self::logicalOr($policy1Command1, $policy1Command2, $policy2Command1));
-        
+
         $traverseStream = $this->createMock(TraverseEventStream::class);
-        
+
         $traverseStream->expects(self::once())
             ->method('__invoke')
             ->with(ProcessPolicies::class)
@@ -69,7 +69,7 @@ final class ProcessPoliciesTest extends TestCase
             $commandBus,
             $traverseStream
         );
-        
+
         $runPolicies();
     }
 }

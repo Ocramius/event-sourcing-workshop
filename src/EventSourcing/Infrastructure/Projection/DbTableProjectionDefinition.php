@@ -9,7 +9,7 @@ use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 
 /**
  * Definition of a projection that translates a given list of events into a database table.
- * 
+ *
  * @psalm-immutable
  */
 interface DbTableProjectionDefinition

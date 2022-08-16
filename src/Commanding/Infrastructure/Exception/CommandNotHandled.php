@@ -10,6 +10,8 @@ use Psl\Json;
 use Psl\Str;
 use Psl\Vec;
 use RuntimeException;
+
+use function array_combine;
 use function get_class;
 
 final class CommandNotHandled extends RuntimeException
@@ -27,11 +29,11 @@ final class CommandNotHandled extends RuntimeException
         return new self(
             Str\format(
                 "Could not handle command of type \"%s\".\nConfigured handlers:\n%s",
-                get_class($command),
+                $command::class,
                 Json\encode(
                     array_combine(
                         Vec\map($commandHandlers, static fn (CommandHandler $handler): string => $handler->handlesCommand()),
-                        Vec\map($commandHandlers, \get_class(...)),
+                        Vec\map($commandHandlers, get_class(...)),
                     ),
                     true
                 )

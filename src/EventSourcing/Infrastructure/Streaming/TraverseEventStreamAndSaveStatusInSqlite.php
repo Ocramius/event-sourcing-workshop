@@ -11,6 +11,10 @@ use Generator;
 use Psl\Json;
 use Psl\Type;
 
+use function assert;
+use function class_exists;
+use function is_a;
+
 /**
  * A simplistic implementation of {@see TraverseEventStream} that:
  *
@@ -66,7 +70,8 @@ SQL
     private function getCursorStartingPosition(string $name): int
     {
         return Type\union(Type\positive_int(), Type\literal_scalar(0))
-            ->assert($this->db->fetchOne(<<<'SQL'
+            ->assert($this->db->fetchOne(
+                <<<'SQL'
 SELECT last_seen_event_no
 FROM event_stream_cursors
 WHERE name = :name
@@ -125,7 +130,7 @@ SQL
             ['offset' => $offset]
         ));
 
-        if (false === $row) {
+        if ($row === false) {
             return null;
         }
 

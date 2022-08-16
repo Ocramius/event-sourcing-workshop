@@ -10,9 +10,9 @@ use EventSourcingWorkshop\Commanding\Infrastructure\Exception\CommandNotHandled;
 final class HandleCommandThroughGivenCommandHandlers implements CommandBus
 {
     /**
-     * @template CommandType of Command
-     *
      * @param list<CommandHandler<CommandType>> $handlers
+     *
+     * @template CommandType of Command
      */
     public function __construct(private readonly array $handlers)
     {

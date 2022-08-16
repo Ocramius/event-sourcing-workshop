@@ -18,8 +18,8 @@ final class HelloSaid implements AggregateDomainEvent
     /** @psalm-param non-empty-string $message */
     public function __construct(
         public readonly DateTimeImmutable $raisedAt,
-        public readonly GreetingId        $greeting,
-        public readonly string            $message
+        public readonly GreetingId $greeting,
+        public readonly string $message
     ) {
     }
 

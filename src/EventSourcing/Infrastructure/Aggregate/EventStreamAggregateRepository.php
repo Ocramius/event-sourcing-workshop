@@ -14,6 +14,8 @@ use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateRepository;
 use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\Exception\AggregateNotFound;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Serialization\DeSerializeEvent;
 use Webmozart\Assert\Assert;
+
+use function array_map;
 use function Psl\Json\typed;
 use function Psl\Type\dict;
 use function Psl\Type\mixed;
@@ -30,7 +32,7 @@ final class EventStreamAggregateRepository implements AggregateRepository
 
     public function save(AggregateChanged $changed): void
     {
-        $this->db->transactional(function () use ($changed) {
+        $this->db->transactional(function () use ($changed): void {
             $version = $changed->previousVersion;
 
             foreach ($changed->raisedEvents as $event) {
@@ -39,7 +41,7 @@ final class EventStreamAggregateRepository implements AggregateRepository
                 $this->db->insert(
                     'event_stream',
                     [
-                        'event_type'             => get_class($event),
+                        'event_type'             => $event::class,
                         'aggregate_root_type'    => $event->aggregate()
                             ->aggregateType(),
                         'aggregate_root_id'      => $event->aggregate()
@@ -72,7 +74,8 @@ final class EventStreamAggregateRepository implements AggregateRepository
          *     payload: non-empty-string
          * }>
          */
-        $events = $this->db->fetchAllAssociative(<<<'SQL'
+        $events = $this->db->fetchAllAssociative(
+            <<<'SQL'
 SELECT
     event_type,
     time_of_recording,
@@ -91,7 +94,7 @@ SQL
             ]
         );
 
-        if ([] === $events) {
+        if ($events === []) {
             throw AggregateNotFound::forAggregateId($id);
         }
 

@@ -29,9 +29,9 @@ final class HandleCommandThroughGivenCommandHandlersTest extends TestCase
             ->getMock();
 
         $handler1->method('handlesCommand')
-            ->willReturn(get_class($command1));
+            ->willReturn($command1::class);
         $handler2->method('handlesCommand')
-            ->willReturn(get_class($command2));
+            ->willReturn($command2::class);
 
         $handler1->expects(self::once())
             ->method('__invoke')
@@ -59,7 +59,7 @@ final class HandleCommandThroughGivenCommandHandlersTest extends TestCase
             ->getMock();
 
         $handler->method('handlesCommand')
-            ->willReturn(get_class($command1));
+            ->willReturn($command1::class);
 
         $handler->expects(self::never())
             ->method('__invoke');

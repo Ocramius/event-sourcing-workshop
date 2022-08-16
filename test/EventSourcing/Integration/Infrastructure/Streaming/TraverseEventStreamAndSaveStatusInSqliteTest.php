@@ -20,6 +20,9 @@ use PHPUnit\Framework\TestCase;
 use Psl\Dict;
 use Psl\Iter;
 
+use function get_class;
+use function iterator_to_array;
+
 /** @covers \EventSourcingWorkshop\EventSourcing\Infrastructure\Streaming\TraverseEventStreamAndSaveStatusInSqlite */
 final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
 {

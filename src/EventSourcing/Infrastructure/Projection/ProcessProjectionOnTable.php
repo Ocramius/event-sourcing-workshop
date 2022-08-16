@@ -6,22 +6,23 @@ namespace EventSourcingWorkshop\EventSourcing\Infrastructure\Projection;
 
 use Doctrine\DBAL\Connection;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Streaming\TraverseEventStream;
-use function get_class;
+
+use function array_key_exists;
 
 final class ProcessProjectionOnTable
 {
     public function __construct(
         private readonly DbTableProjectionDefinition $definition,
-        private readonly ProjectionTable             $table,
-        private readonly Connection                  $connection,
-        private readonly TraverseEventStream         $traverseEventStream
+        private readonly ProjectionTable $table,
+        private readonly Connection $connection,
+        private readonly TraverseEventStream $traverseEventStream
     ) {
     }
 
     public static function forDefinition(
         DbTableProjectionDefinition $definition,
-        Connection                  $connection,
-        TraverseEventStream         $traverseEventStream
+        Connection $connection,
+        TraverseEventStream $traverseEventStream
     ): self {
         return new self(
             $definition,
@@ -37,7 +38,7 @@ final class ProcessProjectionOnTable
         $operations = $this->definition->scheduledOperations();
 
         foreach (($this->traverseEventStream)($tableName) as $event) {
-            $eventType = get_class($event);
+            $eventType = $event::class;
 
             if (! array_key_exists($eventType, $operations)) {
                 continue;

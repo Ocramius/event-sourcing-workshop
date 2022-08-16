@@ -18,7 +18,9 @@ use EventSourcingWorkshopTest\EventSourcing\Example\Domain\GreetingId;
 use EventSourcingWorkshopTest\EventSourcing\Integration\Support\EventSourcingTestHelper;
 use PHPUnit\Framework\TestCase;
 use Psl\Exception\InvariantViolationException;
+
 use function assert;
+use function iterator_to_array;
 
 /** @covers \EventSourcingWorkshop\EventSourcing\Infrastructure\Persistence\SQLiteEventStore */
 final class SQLiteEventStoreTest extends TestCase
@@ -71,16 +73,12 @@ final class SQLiteEventStoreTest extends TestCase
 
         self::assertEquals(
             [$event4, $event3],
-            iterator_to_array($this->eventStore->stream([
-                'time_of_recording_after' => $today,
-            ]))
+            iterator_to_array($this->eventStore->stream(['time_of_recording_after' => $today]))
         );
 
         self::assertEquals(
             [$event2, $event1],
-            iterator_to_array($this->eventStore->stream([
-                'time_of_recording_before' => $today,
-            ]))
+            iterator_to_array($this->eventStore->stream(['time_of_recording_before' => $today]))
         );
     }
 
@@ -112,9 +110,7 @@ final class SQLiteEventStoreTest extends TestCase
 
         self::assertEquals(
             [$event4, $event3],
-            iterator_to_array($this->eventStore->stream([
-                'no_after' => 2,
-            ]))
+            iterator_to_array($this->eventStore->stream(['no_after' => 2]))
         );
     }
 
@@ -164,7 +160,7 @@ final class SQLiteEventStoreTest extends TestCase
      * Creating a time instance with {@see DateTimeImmutable::RFC3339_EXTENDED} time, and dropping anything
      * below milliseconds (which we don't currently deal with).
      */
-    private function makeTime(DateTimeImmutable $givenTime = null): DateTimeImmutable
+    private function makeTime(?DateTimeImmutable $givenTime = null): DateTimeImmutable
     {
         $time = DateTimeImmutable::createFromFormat(
             DateTimeImmutable::RFC3339_EXTENDED,

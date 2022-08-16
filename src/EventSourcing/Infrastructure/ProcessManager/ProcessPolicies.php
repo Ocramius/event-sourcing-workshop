@@ -9,6 +9,8 @@ use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 use EventSourcingWorkshop\EventSourcing\Domain\Policy;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Streaming\TraverseEventStream;
 
+use function array_walk;
+
 /**
  * This class is supposed to be used as an entry-point, not as a dependency.
  *
@@ -19,8 +21,8 @@ final class ProcessPolicies
 {
     /** @param list<Policy> $policies */
     public function __construct(
-        private readonly array               $policies,
-        private readonly CommandBus          $commandBus,
+        private readonly array $policies,
+        private readonly CommandBus $commandBus,
         private readonly TraverseEventStream $traverseEventStream
     ) {
     }

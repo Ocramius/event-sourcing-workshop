@@ -12,7 +12,7 @@ use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
  * is compatible with their defined constructors.
  *
  * If that is not the case, then the given {@see TreeMapper} must be configured to account for that.
- * 
+ *
  * @see https://github.com/CuyZ/Valinor/blob/444747ab0a1e6e1e05a08c5d402b5e3313205774/docs/pages/source.md
  * @see https://github.com/CuyZ/Valinor/blob/444747ab0a1e6e1e05a08c5d402b5e3313205774/docs/pages/message-customization.md
  */
@@ -22,7 +22,9 @@ final class DeSerializeEventWithValinorMapper implements DeSerializeEvent
     {
     }
 
-    public function __invoke(string $type, array  $payload): DomainEvent {
+    /** {@inheritDoc} */
+    public function __invoke(string $type, array $payload): DomainEvent
+    {
         return $this->treeMapper->map($type, $payload);
     }
 }

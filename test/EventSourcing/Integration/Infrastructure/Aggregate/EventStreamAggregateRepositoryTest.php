@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshopTest\EventSourcing\Integration\Infrastructure\Aggregate;
 
-
 use CuyZ\Valinor\MapperBuilder;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
@@ -33,15 +32,15 @@ final class EventStreamAggregateRepositoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->db = EventSourcingTestHelper::freshDatabase();
+
+        $this->db        = EventSourcingTestHelper::freshDatabase();
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
                 ->mapper()
         );
-        $this->clock = new FrozenClock(new DateTimeImmutable());
-        
+        $this->clock     = new FrozenClock(new DateTimeImmutable());
+
         EventSourcingTestHelper::runDatabaseMigrations($this->db, [CreateEventStreamTable::class]);
         $this->aggregates = new EventStreamAggregateRepository($this->db, $this->loadEvent);
     }
@@ -49,8 +48,8 @@ final class EventStreamAggregateRepositoryTest extends TestCase
     public function testWillSaveAggregateChangedDiffs(): void
     {
         $greetingId = GreetingId::generate();
-        $event1 = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
-        $event2 = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event1     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event2     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
 
         /** @psalm-suppress InvalidArgument we are saving a more specific aggregate type than the one declared */
         $this->aggregates->save(AggregateChanged::changed($greetingId, [$event1, $event2], 4));
@@ -70,8 +69,8 @@ final class EventStreamAggregateRepositoryTest extends TestCase
     public function testWillRetrieveAggregateByGivenId(): void
     {
         $greetingId = GreetingId::generate();
-        $event1 = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
-        $event2 = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event1     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event2     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
 
         EventSourcingTestHelper::appendEvents($this->db, [$event1, $event2]);
 

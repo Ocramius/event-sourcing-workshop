@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshop\EventSourcing\Domain\Aggregate;
 
-use DateTimeImmutable;
 use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 
 /**

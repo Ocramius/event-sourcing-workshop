@@ -18,17 +18,21 @@ final class DummyDbTableProjectionDefinition implements DbTableProjectionDefinit
         return 'dummy_table';
     }
 
-    /** @psalm-pure */
+    /**
+     * @psalm-pure
+     *
+     * {@inheritDoc}
+     */
     public function scheduledOperations(): array
     {
         return [
-            DomainEvent1::class => static function (DomainEvent $event, ProjectionTable $table) {
+            DomainEvent1::class => static function (DomainEvent $event, ProjectionTable $table): void {
                 $data = $event->toArray();
                 Assert::isNonEmptyMap($data);
 
                 $table->upsert($data);
             },
-            DomainEvent2::class => static function (DomainEvent $event, ProjectionTable $table) {
+            DomainEvent2::class => static function (DomainEvent $event, ProjectionTable $table): void {
                 $data = $event->toArray();
                 Assert::isNonEmptyMap($data);
 

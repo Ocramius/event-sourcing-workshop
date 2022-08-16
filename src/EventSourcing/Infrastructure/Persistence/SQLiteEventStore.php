@@ -15,12 +15,16 @@ use EventSourcingWorkshop\EventSourcing\Infrastructure\Serialization\DeSerialize
 use Generator;
 use Psl\Json;
 use Psl\Type;
+
+use function array_key_exists;
+use function implode;
+use function is_a;
 use function Psl\invariant;
 
 final class SQLiteEventStore implements EventStore
 {
     public function __construct(
-        private readonly Connection       $db,
+        private readonly Connection $db,
         private readonly DeSerializeEvent $deSerializeEvent
     ) {
     }
@@ -38,7 +42,7 @@ final class SQLiteEventStore implements EventStore
                 $this->db->insert(
                     'event_stream',
                     [
-                        'event_type'        => get_class($event),
+                        'event_type'        => $event::class,
                         'time_of_recording' => $event->raisedAt()
                             ->format(DateTimeImmutable::RFC3339_EXTENDED),
                         'payload'           => Json\encode($event->toArray()),
@@ -48,6 +52,7 @@ final class SQLiteEventStore implements EventStore
         });
     }
 
+    /** {@inheritDoc} */
     public function stream(array $filter): Generator
     {
         $parameters     = [];

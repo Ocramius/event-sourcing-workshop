@@ -13,7 +13,7 @@ final class DomainEvent1 implements DomainEvent
     /** @psalm-param array<non-empty-string, string|int|bool|float|null> $data */
     public function __construct(
         private readonly DateTimeImmutable $raisedAt,
-        private readonly array             $data
+        private readonly array $data
     ) {
     }
 
@@ -22,6 +22,7 @@ final class DomainEvent1 implements DomainEvent
         return $this->raisedAt;
     }
 
+    /** {@inheritDoc} */
     public function toArray(): array
     {
         return [

@@ -31,3 +31,6 @@ fix-code-style: ## auto-fix coding standard rules, where possible
 	docker-compose run --rm sandbox vendor/bin/phpcbf
 .PHONY: tests
 
+interactive-shell: ## jump in an interactive shell inside the running sandbox
+	docker-compose run --rm sandbox bash
+.PHONY: tests

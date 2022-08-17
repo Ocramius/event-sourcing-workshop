@@ -1,7 +1,7 @@
 {
     "$schema": "https://github.com/composer/composer/blob/ebac357c0a41359f3981098729042ed6dedc97ba/res/composer-schema.json#",
     "name": "ocramius/event-sourcing-workshop",
-    "license": "AGPL-3.0-or-later",
+    "license": "proprietary",
     "description": "A test application for trying out event-sourcing in PHP for the first time",
     "type": "application",
     "autoload": {

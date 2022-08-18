@@ -1,0 +1,21 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "EventSourcing/Infrastructure/Migration/CreateEventStreamCursorsTable.php",
+            "EventSourcing/Infrastructure/Migration/CreateEventStreamTable.php"
+        ]
+    },
+    "logs": {
+        "text": "php://stderr",
+        "github": true
+    },
+    "mutators": {
+        "@default": true
+    },
+    "minMsi": 91,
+    "minCoveredMsi": 100
+}

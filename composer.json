@@ -1,7 +1,7 @@
 {
     "$schema": "https://github.com/composer/composer/blob/ebac357c0a41359f3981098729042ed6dedc97ba/res/composer-schema.json#",
     "name": "ocramius/event-sourcing-workshop",
-    "license": "AGPL-3.0-or-later",
+    "license": "proprietary",
     "description": "A test application for trying out event-sourcing in PHP for the first time",
     "type": "application",
     "autoload": {
@@ -9,14 +9,36 @@
             "EventSourcingWorkshop\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "EventSourcingWorkshopTest\\": "test"
+        }
+    },
     "require": {
-        "php": "^8.1.8",
+        "php": "~8.1.0",
+        "ext-pdo_sqlite": "*",
+        "azjezz/psl": "^2.0.3",
+        "cuyz/valinor": "^0.12.0",
         "doctrine/dbal": "^3.3.7",
-        "cuyz/valinor": "^0.12.0"
+        "lcobucci/clock": "^2.2",
+        "ramsey/uuid": "^4.3.1"
     },
     "require-dev": {
+        "doctrine/coding-standard": "^9.0.0",
+        "doctrine/migrations": "^3.5",
+        "php-standard-library/psalm-plugin": "^2.0",
         "phpunit/phpunit": "^9.5.21",
-        "vimeo/psalm": "^4.24.0",
-        "qossmic/deptrac-shim": "^0.23.0"
+        "psalm/plugin-phpunit": "^0.17.0",
+        "qossmic/deptrac-shim": "^0.23.0",
+        "roave/infection-static-analysis-plugin": "^1.21",
+        "symfony/console": "^6.1",
+        "vimeo/psalm": "^4.24.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": false
+        }
     }
 }

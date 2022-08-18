@@ -1,0 +1,40 @@
+# This file contains dependency rules of interaction between hexagonal layers.
+#
+# Use `make deptrac` to verify these rules.
+deptrac:
+  paths:
+    - ./src
+  layers:
+    - name: Domain
+      collectors:
+        - type: directory
+          regex: src/[A-Za-z0-9]+/Domain/.*
+        - type: directory
+          regex: test/[A-Za-z0-9]+/Domain/.*
+    - name: Infrastructure
+      collectors:
+        - type: directory
+          regex: src/[A-Za-z0-9]+/Infrastructure/.*
+        - type: directory
+          regex: test/[A-Za-z0-9]+/Infrastructure/.*
+    - name: Application
+      collectors:
+        - type: directory
+          regex: src/[A-Za-z0-9]+/Application/.*
+        - type: directory
+          regex: test/[A-Za-z0-9]+/Application/.*
+    - name: vendor
+      collectors:
+        - type: directory
+          regex: vendor
+  
+  ruleset:
+    # domain should stay tool-agnostic
+    Domain: ~
+    # this is where we integrate external technologies with the domain
+    Infrastructure:
+      - Domain
+    # glue code: it bootstraps the entire system, and wires HTTP/CLI interactions with infrastructure and domain
+    Application:
+      - Infrastructure
+      - Domain

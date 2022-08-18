@@ -1,0 +1,49 @@
+name: CI
+on:
+  pull_request:
+  push:
+
+env:
+  DOCKER_IMAGE_TAG: ${{ github.sha }}
+  MOUNT_APP_VOLUME_LOCATION: '/nowhere' # disables mounting volumes in `docker-compose.yml`
+
+jobs:
+  images:
+    name: Build CI Images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Install BuildX"
+        uses: docker/setup-buildx-action@v1
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: "Build docker containers"
+        uses: docker/build-push-action@v2
+        with:
+          load: true
+          file: Dockerfile
+          context: .
+          push: false
+          tags: ghcr.io/ocramius/event-sourcing-workshop/sandbox:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: "Run static analysis"
+        run: docker-compose run --rm sandbox vendor/bin/psalm --no-progress --output-format=github
+
+      - name: "Run tests"
+        run: docker-compose run --rm sandbox vendor/bin/phpunit
+
+      - name: "Run coding style checks"
+        run: docker-compose run --rm sandbox vendor/bin/phpcs
+
+      - name: "Check component interdependencies"
+        run: docker-compose run --rm sandbox vendor/bin/deptrac --config-file components.depfile.yml
+
+      - name: "Check hexagonal layers interdependencies"
+        run: docker-compose run --rm sandbox vendor/bin/deptrac --config-file hexagonal-layers.depfile.yml
+
+      - name: "Run mutation tests"
+        run: docker-compose run --rm sandbox vendor/bin/roave-infection-static-analysis-plugin

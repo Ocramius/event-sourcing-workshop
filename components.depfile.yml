@@ -1,0 +1,26 @@
+# This file contains rules about which high-level components can reference each other.
+#
+# This is to discourage cyclic dependencies between business domains.
+#
+# Use `make deptrac` to verify these rules.
+deptrac:
+  paths:
+    - ./src
+  layers:
+    - name: Commanding
+      collectors:
+        - type: directory
+          regex: src/Commanding/.*
+        - type: directory
+          regex: test/Commanding/.*
+    - name: EventSourcing
+      collectors:
+        - type: directory
+          regex: src/EventSourcing/.*
+        - type: directory
+          regex: test/EventSourcing/.*
+  
+  ruleset:
+    Commanding: ~
+    EventSourcing:
+      - Commanding

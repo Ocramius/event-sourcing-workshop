@@ -18,10 +18,10 @@
         "php": "~8.1.0",
         "ext-pdo_sqlite": "*",
         "azjezz/psl": "^2.0.3",
-        "cuyz/valinor": "^0.12.0",
-        "doctrine/dbal": "^3.3.7",
+        "cuyz/valinor": "^0.13.0",
+        "doctrine/dbal": "^3.4.1",
         "lcobucci/clock": "^2.2",
-        "ramsey/uuid": "^4.3.1"
+        "ramsey/uuid": "^4.4.0"
     },
     "require-dev": {
         "doctrine/coding-standard": "^9.0.0",
@@ -29,7 +29,7 @@
         "php-standard-library/psalm-plugin": "^2.0",
         "phpunit/phpunit": "^9.5.21",
         "psalm/plugin-phpunit": "^0.17.0",
-        "qossmic/deptrac-shim": "^0.23.0",
+        "qossmic/deptrac-shim": "^0.24.0",
         "roave/infection-static-analysis-plugin": "^1.21",
         "symfony/console": "^6.1",
         "vimeo/psalm": "^4.24.0"

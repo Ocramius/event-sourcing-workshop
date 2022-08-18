@@ -9,6 +9,10 @@ namespace EventSourcingWorkshop\EventSourcing\Infrastructure\Projection;
  * IMPORTANT: keys used in insert/update/delete statements are NOT quoted by design. *DO NOT* accept
  *            user input for any of this!
  *            Psalm taint analysis may help, but it is **NOT** configured here.
+ *
+ * Note: event-sourcing projections are not limited to DB tables: it is very much
+ *       possible to store to caches, graph databases, CSV reports, XML structures,
+ *       etc. We just chose to abstract SQL tables here, for ease of use.
  */
 interface ProjectionTable
 {

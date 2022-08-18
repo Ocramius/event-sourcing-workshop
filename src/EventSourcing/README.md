@@ -155,7 +155,7 @@ In order to generate events in an `Aggregate` you must:
 
 1. compute the current `Aggregate` state through its **history** (`Aggregate::fromHistory()`)
 2. apply the wished operation
-3. extract the events produced during your the state mutation
+3. extract the events produced during the state mutation
 
 When creating an aggregate, this means following:
 

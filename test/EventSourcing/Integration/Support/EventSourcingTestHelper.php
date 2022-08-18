@@ -87,8 +87,7 @@ final class EventSourcingTestHelper
             if ($event instanceof AggregateDomainEvent) {
                 $aggregate     = $event->aggregate();
                 $aggregateType = $aggregate->aggregateType();
-                $aggregateId   = $aggregate->toUuid()
-                    ->getBytes();
+                $aggregateId   = $aggregate->toString();
                 $version       = $aggregateVersions[$aggregateId] ?? 1;
             }
 
@@ -109,7 +108,7 @@ final class EventSourcingTestHelper
                 continue;
             }
 
-            $aggregateVersions[$event->aggregate()->toUuid()->getBytes()] = $version + 1;
+            $aggregateVersions[$event->aggregate()->toString()] = $version + 1;
         }
     }
 
@@ -210,10 +209,7 @@ ORDER BY
     aggregate_root_version ASC
 SQL
                     ,
-                    [
-                        'id' => $id->toUuid()
-                            ->getBytes(),
-                    ],
+                    ['id' => $id->toString()],
                     ['id' => Types::STRING]
                 ))
         );
@@ -221,7 +217,7 @@ SQL
 
     public static function fetchLastChangedAggregateId(Connection $db): UuidInterface
     {
-        return Uuid::fromBytes(
+        return Uuid::fromString(
             non_empty_string()
                 ->coerce($db->fetchOne('SELECT aggregate_root_id FROM event_stream ORDER BY no DESC LIMIT 1'))
         );

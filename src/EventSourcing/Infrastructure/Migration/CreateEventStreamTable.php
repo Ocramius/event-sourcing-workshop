@@ -21,7 +21,7 @@ CREATE TABLE event_stream (
     no INTEGER PRIMARY KEY AUTOINCREMENT,
     event_type VARCHAR(1024) NOT NULL,
     aggregate_root_type VARCHAR(1024) DEFAULT NULL,
-    aggregate_root_id VARBINARY(255) DEFAULT NULL,
+    aggregate_root_id VARCHAR(1024) DEFAULT NULL,
     aggregate_root_version INT DEFAULT NULL,
     time_of_recording DATETIME NOT NULL,
     payload JSON NOT NULL,

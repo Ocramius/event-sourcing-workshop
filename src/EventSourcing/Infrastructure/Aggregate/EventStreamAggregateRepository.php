@@ -38,15 +38,14 @@ final class EventStreamAggregateRepository implements AggregateRepository
             foreach ($changed->raisedEvents as $event) {
                 ++$version;
 
+                $aggregate = $event->aggregate();
+
                 $this->db->insert(
                     'event_stream',
                     [
                         'event_type'             => $event::class,
-                        'aggregate_root_type'    => $event->aggregate()
-                            ->aggregateType(),
-                        'aggregate_root_id'      => $event->aggregate()
-                            ->toUuid()
-                            ->getBytes(),
+                        'aggregate_root_type'    => $aggregate->aggregateType(),
+                        'aggregate_root_id'      => $aggregate->toString(),
                         'aggregate_root_version' => $version,
                         'time_of_recording'      => $event->raisedAt()
                             ->format('Y-m-d H:i:s.u'),
@@ -86,8 +85,7 @@ ORDER BY aggregate_root_version ASC
 SQL
             ,
             [
-                'aggregateId' => $id->toUuid()
-                    ->getBytes(),
+                'aggregateId' => $id->toString(),
             ],
             [
                 'aggregateId' => Types::STRING,

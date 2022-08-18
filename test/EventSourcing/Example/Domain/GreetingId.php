@@ -23,11 +23,6 @@ final class GreetingId implements AggregateId
         return $this->id->toString();
     }
 
-    public function toUuid(): UuidInterface
-    {
-        return $this->id;
-    }
-
     public function aggregateType(): string
     {
         return Greeting::class;

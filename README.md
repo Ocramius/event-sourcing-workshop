@@ -42,7 +42,8 @@ make interactive-shell
 
 ## Architecture
 
- * [ ] TODO
+ * [`EventSourcingWorkshop\EventSourcing` documentation](./src/EventSourcing/README.md)
+ * [example implementation](./test/EventSourcing/Example/README.md) used in integration tests
 
 ## Exercises
 

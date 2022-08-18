@@ -15,19 +15,18 @@ use function implode;
 
 final class SQLiteProjectionTable implements ProjectionTable
 {
-    /** @psalm-var non-empty-string */
-    private readonly string $tableName;
-
-    public function __construct(private readonly Connection $connection, DbTableProjectionDefinition $tableDefinition)
-    {
-        $this->tableName = $tableDefinition->tableName();
+    public function __construct(
+        private readonly Connection $connection,
+        private readonly DbTableProjectionDefinition $tableDefinition
+    ) {
     }
 
     /** {@inheritDoc} */
     public function insertIgnore(array $record): void
     {
         $this->connection->executeStatement(
-            'INSERT OR IGNORE INTO ' . $this->tableName . ' (' . implode(',', array_keys($record)) . ') '
+            'INSERT OR IGNORE INTO ' . $this->tableDefinition->tableName()
+            . ' (' . implode(',', array_keys($record)) . ') '
             . 'VALUES (' . implode(',', array_fill(0, count($record), '?')) . ')',
             array_values($record)
         );
@@ -39,7 +38,7 @@ final class SQLiteProjectionTable implements ProjectionTable
         $columns = array_keys($record);
 
         $this->connection->executeStatement(
-            'INSERT INTO ' . $this->tableName . ' (' . implode(',', $columns) . ') '
+            'INSERT INTO ' . $this->tableDefinition->tableName() . ' (' . implode(',', $columns) . ') '
             . 'VALUES (' . implode(',', array_fill(0, count($record), '?')) . ') '
             . 'ON CONFLICT DO UPDATE SET ' . implode(',', array_map(
                 static function (string $column): string {
@@ -54,17 +53,17 @@ final class SQLiteProjectionTable implements ProjectionTable
     /** {@inheritDoc} */
     public function update(array $criteria, array $values): void
     {
-        $this->connection->update($this->tableName, $values, $criteria);
+        $this->connection->update($this->tableDefinition->tableName(), $values, $criteria);
     }
 
     /** {@inheritDoc} */
     public function delete(array $criteria): void
     {
-        $this->connection->delete($this->tableName, $criteria);
+        $this->connection->delete($this->tableDefinition->tableName(), $criteria);
     }
 
     public function truncate(): void
     {
-        $this->connection->executeStatement('TRUNCATE TABLE ' . $this->tableName);
+        $this->connection->executeStatement('TRUNCATE TABLE ' . $this->tableDefinition->tableName());
     }
 }

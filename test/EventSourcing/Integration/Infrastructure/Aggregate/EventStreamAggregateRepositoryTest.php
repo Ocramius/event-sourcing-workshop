@@ -48,8 +48,8 @@ final class EventStreamAggregateRepositoryTest extends TestCase
     public function testWillSaveAggregateChangedDiffs(): void
     {
         $greetingId = GreetingId::generate();
-        $event1     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
-        $event2     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event1     = new HelloSaid($this->clock->now(), $greetingId, 'hi');
+        $event2     = new HelloSaid($this->clock->now(), $greetingId, 'hi');
 
         /** @psalm-suppress InvalidArgument we are saving a more specific aggregate type than the one declared */
         $this->aggregates->save(AggregateChanged::changed($greetingId, [$event1, $event2], 4));
@@ -69,8 +69,8 @@ final class EventStreamAggregateRepositoryTest extends TestCase
     public function testWillRetrieveAggregateByGivenId(): void
     {
         $greetingId = GreetingId::generate();
-        $event1     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
-        $event2     = HelloSaid::raise($greetingId, 'hi', $this->clock->now());
+        $event1     = new HelloSaid($this->clock->now(), $greetingId, 'hi');
+        $event2     = new HelloSaid($this->clock->now(), $greetingId, 'hi');
 
         EventSourcingTestHelper::appendEvents($this->db, [$event1, $event2]);
 

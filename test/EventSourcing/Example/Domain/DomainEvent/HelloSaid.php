@@ -42,17 +42,4 @@ final class HelloSaid implements AggregateDomainEvent
             'message'  => $this->message,
         ];
     }
-
-    /**
-     * Note: this is not pure because we use {@see \DateTimeImmutable::__construct()},
-     * but you may use an {@see Clock} upfront in your own code.
-     *
-     * @psalm-param non-empty-string $message
-     *
-     * @psalm-pure
-     */
-    public static function raise(GreetingId $greeting, string $message, DateTimeImmutable $date): self
-    {
-        return new self($date, $greeting, $message);
-    }
 }

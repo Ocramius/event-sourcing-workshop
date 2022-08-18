@@ -14,30 +14,20 @@ namespace EventSourcingWorkshop\EventSourcing\Domain\Aggregate;
  */
 final class AggregateChanged
 {
-    public AggregateId $aggregate;
-    /** @var list<AggregateDomainEvent<AggregateType>> */
-    public array $raisedEvents;
-    /**
-     * Reference to the version that the {@see Aggregate} had before those events were produced, so that
-     * it is possible to reconstruct the incremental version to be associated with each event.
-     *
-     * @psalm-var 0|positive-int
-     */
-    public int $previousVersion;
-
     /**
      * @psalm-param AggregateId<AggregateType>                $subject
      * @psalm-param list<AggregateDomainEvent<AggregateType>> $raisedEvents
-     * @psalm-param 0|positive-int                            $previousVersion
+     * @psalm-param 0|positive-int                            $previousVersion Reference to the version that the
+     *                                                                         {@see Aggregate} had before these events
+     *                                                                         were produced, so that it is possible to
+     *                                                                         reconstruct the incremental version to be
+     *                                                                         associated with each event.
      */
     private function __construct(
-        AggregateId $aggregate,
-        array $raisedEvents,
-        int $previousVersion
+        public readonly AggregateId $aggregate,
+        public readonly array $raisedEvents,
+        public readonly int $previousVersion
     ) {
-        $this->aggregate       = $aggregate;
-        $this->raisedEvents    = $raisedEvents;
-        $this->previousVersion = $previousVersion;
     }
 
     /**

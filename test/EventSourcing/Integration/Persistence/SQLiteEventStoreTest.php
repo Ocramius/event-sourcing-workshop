@@ -133,7 +133,7 @@ final class SQLiteEventStoreTest extends TestCase
 
     public function testRefusesToSaveAggregateDomainEvents(): void
     {
-        $event = HelloSaid::raise(GreetingId::generate(), 'hello', $this->makeTime());
+        $event = new HelloSaid($this->makeTime(), GreetingId::generate(), 'hello');
 
         $this->expectException(InvariantViolationException::class);
         $this->eventStore->save($event);
@@ -144,7 +144,7 @@ final class SQLiteEventStoreTest extends TestCase
         $event1 = new DomainEvent1($this->makeTime(), ['foo' => 'bar']);
         $event2 = new DomainEvent2($this->makeTime(), ['baz' => 'tab']);
         $event3 = new DomainEvent3($this->makeTime(), ['taz' => 'tar']);
-        $broken = HelloSaid::raise(GreetingId::generate(), 'hello', $this->makeTime());
+        $broken = new HelloSaid($this->makeTime(), GreetingId::generate(), 'hello');
         $event4 = new DomainEvent3($this->makeTime(), ['war' => 'waz']);
 
         try {

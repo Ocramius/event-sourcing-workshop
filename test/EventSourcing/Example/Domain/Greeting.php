@@ -38,7 +38,7 @@ final class Greeting implements Aggregate
     {
         $instance = new self(GreetingId::generate());
 
-        return AggregateChanged::created($instance->id, [HelloSaid::raise($instance->id, $message, $date)]);
+        return AggregateChanged::created($instance->id, [new HelloSaid($date, $instance->id, $message)]);
     }
 
     /**
@@ -52,7 +52,7 @@ final class Greeting implements Aggregate
             throw new BadMethodCallException('Goodbye is goodbye - we already said it!');
         }
 
-        return AggregateChanged::changed($this->id, [GoodbyeSaid::raise($this->id, $message, $when)], $this->version);
+        return AggregateChanged::changed($this->id, [new GoodbyeSaid($when, $this->id, $message)], $this->version);
     }
 
     /**

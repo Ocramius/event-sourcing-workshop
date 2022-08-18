@@ -107,8 +107,8 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
 
         EventSourcingTestHelper::assertEquivalentEvents(
             [
-                HelloSaid::raise($greetingId, 'hi!', $this->clock->now()),
-                GoodbyeSaid::raise($greetingId, 'goodbye!', $this->clock->now()),
+                new HelloSaid($this->clock->now(), $greetingId, 'hi!'),
+                new GoodbyeSaid($this->clock->now(), $greetingId, 'goodbye!'),
             ],
             EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId),
             'A ' . GoodbyeSaid::class . ' associated to our previous ' . HelloSaid::class . ' was raised'
@@ -149,8 +149,8 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
 
         EventSourcingTestHelper::assertEquivalentEvents(
             [
-                HelloSaid::raise($greetingId, 'joe', $this->clock->now()),
-                GoodbyeSaid::raise($greetingId, 'goodbye - joe', $this->clock->now()),
+                new HelloSaid($this->clock->now(), $greetingId, 'joe'),
+                new GoodbyeSaid($this->clock->now(), $greetingId, 'goodbye - joe'),
             ],
             EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId),
             GoodbyeSaid::class . ' was raised automatically by policy + automation'

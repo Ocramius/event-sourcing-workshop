@@ -52,9 +52,4 @@ SQL
     {
         $this->addSql('DROP TABLE event_stream');
     }
-
-    public function isTransactional(): bool
-    {
-        return false;
-    }
 }

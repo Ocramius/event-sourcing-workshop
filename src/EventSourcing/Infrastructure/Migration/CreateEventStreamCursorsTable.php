@@ -30,9 +30,4 @@ SQL
     {
         $this->addSql('DROP TABLE event_stream_cursors');
     }
-
-    public function isTransactional(): bool
-    {
-        return false;
-    }
 }

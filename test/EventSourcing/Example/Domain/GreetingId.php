@@ -14,11 +14,8 @@ use Ramsey\Uuid\UuidInterface;
  */
 final class GreetingId implements AggregateId
 {
-    private UuidInterface $id;
-
-    private function __construct(UuidInterface $id)
+    private function __construct(private readonly UuidInterface $id)
     {
-        $this->id = $id;
     }
 
     public function toString(): string

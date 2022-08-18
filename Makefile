@@ -19,6 +19,10 @@ tests: ## run tests
 	docker-compose run --rm sandbox vendor/bin/phpunit
 .PHONY: tests
 
+mutation-tests: ## verify test and code quality through mutation tests
+	docker-compose run --rm sandbox vendor/bin/roave-infection-static-analysis-plugin
+.PHONY: tests
+
 static-analysis: ## verify code type-level soundness
 	docker-compose run --rm sandbox vendor/bin/psalm --no-cache
 .PHONY: tests

@@ -22,7 +22,8 @@ RUN apt update \
       software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     && apt install -y --no-install-recommends \
-        # Base dependencies
+        # Base dependencies \
+        git \
         unzip \
         \
         php8.1-bcmath \

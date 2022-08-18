@@ -48,7 +48,7 @@ final class ProcessProjectionOnTableTest extends TestCase
         $traverseStream->expects(self::once())
             ->method('__invoke')
             ->with('a_table_name')
-            ->willReturn([$event1, $event2, $event3]);
+            ->willReturn([$event3, $event1, $event2]);
 
         (new ProcessProjectionOnTable($tableDefinition, $table, $connection, $traverseStream))();
     }

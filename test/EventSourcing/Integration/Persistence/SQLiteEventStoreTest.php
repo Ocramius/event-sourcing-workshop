@@ -7,6 +7,8 @@ namespace EventSourcingWorkshopTest\EventSourcing\Integration\Persistence;
 use CuyZ\Valinor\MapperBuilder;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
+use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateChanged;
+use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateRepository;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Migration\CreateEventStreamTable;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Persistence\SQLiteEventStore;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Serialization\DeSerializeEventWithValinorMapper;
@@ -136,6 +138,10 @@ final class SQLiteEventStoreTest extends TestCase
         $event = new HelloSaid($this->makeTime(), GreetingId::generate(), 'hello');
 
         $this->expectException(InvariantViolationException::class);
+        $this->expectExceptionMessage(
+            'Please save ' . AggregateChanged::class . ' instances through '
+            . AggregateRepository::class . ' instead'
+        );
         $this->eventStore->save($event);
     }
 

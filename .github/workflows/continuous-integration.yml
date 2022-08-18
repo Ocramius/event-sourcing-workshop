@@ -40,7 +40,10 @@ jobs:
         run: docker-compose run --rm sandbox vendor/bin/phpcs
 
       - name: "Check component interdependencies"
-        run: docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file components.depfile.yml
+        run: docker-compose run --rm sandbox vendor/bin/deptrac --config-file components.depfile.yml
 
       - name: "Check hexagonal layers interdependencies"
-        run: docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file hexagonal-layers.depfile.yml
+        run: docker-compose run --rm sandbox vendor/bin/deptrac --config-file hexagonal-layers.depfile.yml
+
+      - name: "Run mutation tests"
+        run: docker-compose run --rm sandbox vendor/bin/roave-infection-static-analysis-plugin

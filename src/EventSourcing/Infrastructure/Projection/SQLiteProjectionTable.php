@@ -27,7 +27,7 @@ final class SQLiteProjectionTable implements ProjectionTable
         $this->connection->executeStatement(
             'INSERT OR IGNORE INTO ' . $this->tableDefinition->tableName()
             . ' (' . implode(',', array_keys($record)) . ') '
-            . 'VALUES (' . implode(',', array_fill(0, count($record), '?')) . ')',
+            . 'VALUES (' . implode(',', $this->makePlaceholders(count($record))) . ')',
             array_values($record)
         );
     }
@@ -39,7 +39,7 @@ final class SQLiteProjectionTable implements ProjectionTable
 
         $this->connection->executeStatement(
             'INSERT INTO ' . $this->tableDefinition->tableName() . ' (' . implode(',', $columns) . ') '
-            . 'VALUES (' . implode(',', array_fill(0, count($record), '?')) . ') '
+            . 'VALUES (' . implode(',', $this->makePlaceholders(count($record))) . ') '
             . 'ON CONFLICT DO UPDATE SET ' . implode(',', array_map(
                 static function (string $column): string {
                     return $column . '=excluded.' . $column;
@@ -65,5 +65,15 @@ final class SQLiteProjectionTable implements ProjectionTable
     public function truncate(): void
     {
         $this->connection->executeStatement('TRUNCATE TABLE ' . $this->tableDefinition->tableName());
+    }
+
+    /**
+     * @param positive-int $count
+     *
+     * @return non-empty-list<'?'>
+     */
+    private function makePlaceholders(int $count): array
+    {
+        return array_fill(0, $count, '?');
     }
 }

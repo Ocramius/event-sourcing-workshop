@@ -30,13 +30,15 @@
         "phpunit/phpunit": "^9.5.21",
         "psalm/plugin-phpunit": "^0.17.0",
         "qossmic/deptrac-shim": "^0.23.0",
+        "roave/infection-static-analysis-plugin": "^1.21",
         "symfony/console": "^6.1",
         "vimeo/psalm": "^4.24.0"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": false
         }
     }
 }

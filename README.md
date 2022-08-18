@@ -43,6 +43,7 @@ make interactive-shell
 ## Architecture
 
  * [`EventSourcingWorkshop\EventSourcing` documentation](./src/EventSourcing/README.md)
+ * [`EventSourcingWorkshop\Commanding` documentation](./src/Commanding/README.md)
  * [example implementation](./test/EventSourcing/Example/README.md) used in integration tests
 
 ## Exercises

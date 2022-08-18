@@ -36,6 +36,7 @@ Run:
 
 ```sh
 make composer-install
+make quality-assurance
 make interactive-shell
 ```
 

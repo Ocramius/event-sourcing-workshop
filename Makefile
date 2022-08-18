@@ -13,7 +13,7 @@ composer-install: ## run composer installation within the docker containers (use
 	docker-compose run --rm sandbox composer install
 .PHONY: composer-install
 
-quality-assurance: tests static-analysis check-code-style ## run all quality assurance jobs
+quality-assurance: tests static-analysis check-code-style check-interdependencies ## run all quality assurance jobs
 
 tests: ## run tests
 	docker-compose run --rm sandbox vendor/bin/phpunit
@@ -29,6 +29,16 @@ check-code-style: ## verify coding standards are respected
 
 fix-code-style: ## auto-fix coding standard rules, where possible
 	docker-compose run --rm sandbox vendor/bin/phpcbf
+.PHONY: tests
+
+check-interdependencies: check-component-interdependencies check-hexagonal-layers-interdependencies ## check that code symbols depend on each other according to defined rules 
+
+check-component-interdependencies: ## check that components depend according to defined rules
+	docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file components.depfile.yml
+.PHONY: tests
+
+check-hexagonal-layers-interdependencies: ## check that hexagonal layers depend on each other according to defined rules
+	docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file hexagonal-layers.depfile.yml
 .PHONY: tests
 
 interactive-shell: ## jump in an interactive shell inside the running sandbox

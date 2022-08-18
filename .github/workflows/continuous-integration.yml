@@ -38,3 +38,9 @@ jobs:
 
       - name: "Run coding style checks"
         run: docker-compose run --rm sandbox vendor/bin/phpcs
+
+      - name: "Check component interdependencies"
+        run: docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file components.depfile.yml
+
+      - name: "Check hexagonal layers interdependencies"
+        run: docker-compose run --rm sandbox ./vendor/bin/deptrac --config-file hexagonal-layers.depfile.yml

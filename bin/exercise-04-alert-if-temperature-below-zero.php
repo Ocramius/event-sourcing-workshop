@@ -1,8 +1,5 @@
 #!/usr/bin/env php
 <?php
-/**
- * Usage: ./project-last-temperature.php
- */
 
 declare(strict_types=1);
 

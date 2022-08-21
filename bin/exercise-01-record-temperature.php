@@ -39,7 +39,7 @@ use UnexpectedValueException;
      *
      * 1. create a new `TemperatureRecorded` {@see DomainEvent} implementation under ../src/TemperatureTracking/Domain
      * 2. raise the event
-     * 2. save that event to the event store (tip: check $kernel properties)
+     * 2. save that event to the event store (tip: check the `$kernel`'s {@see Kernel::$traverseEventStream})
      * 3. observe the event store
      *
      * Question: what was saved in the DB?

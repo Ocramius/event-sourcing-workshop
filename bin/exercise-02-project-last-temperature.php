@@ -1,8 +1,5 @@
 #!/usr/bin/env php
 <?php
-/**
- * Usage: ./project-last-temperature.php
- */
 
 declare(strict_types=1);
 
@@ -21,7 +18,7 @@ use EventSourcingWorkshop\Glue\Application\Kernel;
     /**
      * Here we want to:
      *
-     * 1. iterate over recorded temperatures (tip: look at `$kernel` properties!)
+     * 1. iterate over recorded temperatures (tip: check the `$kernel`'s {@see Kernel::$traverseEventStream})
      * 2. generate an `array<string, float>` containing the last known temperature at each location
      * 3. save all accumulated temperatures to a file
      *

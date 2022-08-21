@@ -75,9 +75,22 @@ Edit and run [bin/exercise-02-project-last-temperature.php](bin/exercise-02-proj
 Question: what happens when you run the script multiple times?
 Question: can you record new temperatures and make them affect your state?
 
-### 3 - Send an alert when the temperature is below freezing point
+### 3 - Tracking the average recorded temperature at each location, but in the database
 
-Edit and run [bin/exercise-03-alert-if-temperature-below-zero.php](bin/exercise-03-alert-if-temperature-below-zero.php).
+Edit and run [bin/exercise-02-project-last-temperature.php](bin/exercise-03-project-average-temperature.php).
+
+1. write a DB migration with your own table (see [existing migrations](src/EventSourcing/Infrastructure/Migration))
+2. write a [`DbTableProjectionDefinition`](src/EventSourcing/Infrastructure/Projection/DbTableProjectionDefinition.php)
+   that defines what we should do for each event.
+   See [an example projection definition](test/EventSourcing/Example/Infrastructure/Projection/PendingGoodbyes.php) for
+   inspiration.
+3. create a [`ProcessProjectionOnTable`](src/EventSourcing/Infrastructure/Projection/ProcessProjectionOnTable.php)
+   and run it
+4. run your script, observe the database state
+
+### 4 - Send an alert when the temperature is below freezing point
+
+Edit and run [bin/exercise-04-alert-if-temperature-below-zero.php](bin/exercise-04-alert-if-temperature-below-zero.php).
 
 1. create a new `WhenTemperatureBelowZeroSendAlert` [`Policy`](src/EventSourcing/Domain/Policy.php)
 2. create a new `SendTemperateBelowZeroAlert` [`Command`](src/Commanding/Domain/Command.php)

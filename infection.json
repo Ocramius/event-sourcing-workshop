@@ -5,6 +5,7 @@
             "src"
         ],
         "excludes": [
+            "Glue/Application/Kernel.php",
             "EventSourcing/Infrastructure/Migration/CreateEventStreamCursorsTable.php",
             "EventSourcing/Infrastructure/Migration/CreateEventStreamTable.php"
         ]

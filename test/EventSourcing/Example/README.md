@@ -64,6 +64,6 @@ graph TB
    
    subgraph Policies
       HelloSaid --> WhenHelloSaidThenSayGoodbye[WhenHelloSaidThenSayGoodbye]
-      WhenHelloSaidThenSayGoodbye --> SayHello
+      WhenHelloSaidThenSayGoodbye --> SayGoodbye
    end
 ```

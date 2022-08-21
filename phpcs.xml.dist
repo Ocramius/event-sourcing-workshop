@@ -10,6 +10,7 @@
 
     <arg value="nps"/>
 
+    <file>./bin</file>
     <file>./src</file>
     <file>./test</file>
 
@@ -19,5 +20,12 @@
         See https://wiki.php.net/rfc/first_class_callable_syntax
         -->
         <exclude name="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking.UnpackingUsed"/>
+        
+        <!--
+        we use the {@see Type} syntax to reference symbols and make them "clickable" for workshop
+        attendees. While cleaning up unused imports is nice, PHPCS does not understand {@see Type}
+        related imports.
+        -->     
+        <exclude name="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse"/>
     </rule>
 </ruleset>

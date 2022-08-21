@@ -94,7 +94,7 @@ Edit and run [bin/exercise-04-alert-if-temperature-below-zero.php](bin/exercise-
 
 1. create a new `WhenTemperatureBelowZeroSendAlert` [`Policy`](src/EventSourcing/Domain/Policy.php)
 2. create a new `SendTemperateBelowZeroAlert` [`Command`](src/Commanding/Domain/Command.php)
-3. create a new `HandleSendTemperateBelowZeroAlert` [`CommandHandler`](src/Commanding/Infrastructure/CommandHandler.php).
+3. create a new `HandleSendTemperateBelowZeroAlert` [`CommandHandler`](src/Commanding/Infrastructure/CommandHandler.php)
    It should only print some alert message to `STDERR` via `error_log()`, for now.
 4. wire it together with [`ProcessPolicies`](src/EventSourcing/Infrastructure/ProcessManager/ProcessPolicies.php)
 5. run it, see if you can get the alerts fired
@@ -102,6 +102,22 @@ Edit and run [bin/exercise-04-alert-if-temperature-below-zero.php](bin/exercise-
 Question: what happens when you run the script multiple times?
 Question: what happens when new events appear, and you run the script again?
 Question: how should we deal with failures/crashes here?
+
+### 5 - Payment aggregate
+
+We need to demonstrate how aggregates work.
+
+* [ ] TODO: idea of:
+    * requesting a payment
+    * tracking late payments
+        * requires a time ticker process
+        * send out late payment notices
+    * tracking completed payments
+
+### 6 - Collaborative event-storming
+
+* [ ] TODO: idea of mapping a speed-trap fine management process
+* [ ] TODO: idea of mapping a hotel reservation + stay process
 
 ## License
 

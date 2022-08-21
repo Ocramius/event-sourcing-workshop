@@ -19,8 +19,27 @@ deptrac:
           regex: src/EventSourcing/.*
         - type: directory
           regex: test/EventSourcing/.*
+    - name: Glue
+      collectors:
+        - type: directory
+          regex: src/Glue/.*
+        - type: directory
+          regex: test/Glue/.*
+    - name: TemperatureTracking
+      collectors:
+        - type: directory
+          regex: src/TemperatureTracking/.*
+        - type: directory
+          regex: test/TemperatureTracking/.*
   
   ruleset:
     Commanding: ~
     EventSourcing:
       - Commanding
+    Glue:
+      - Commanding
+      - EventSourcing
+    TemperatureTracking:
+      - Commanding
+      - EventSourcing
+      

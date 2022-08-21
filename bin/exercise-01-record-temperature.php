@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace EventSourcingWorkshop\Exercise\TemperatureTracking;
 
 use BadMethodCallException;
+use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 use EventSourcingWorkshop\Glue\Application\Kernel;
 use Psl\Env;
 use Psl\Type;
@@ -36,11 +37,10 @@ use UnexpectedValueException;
     /**
      * Here we want to:
      *
-     * 1. get the current location and temperature from input (use `$location` and `$temperature` from above)
-     * 2. raise an event (you have to write the event class - see ../src/TemperatureTracking/Domain). You will need
-     *    to track both the location and the temperature.
-     * 4. save that event to the event store (tip: check $kernel properties)
-     * 5. observe the event store
+     * 1. create a new `TemperatureRecorded` {@see DomainEvent} implementation under ../src/TemperatureTracking/Domain
+     * 2. raise the event
+     * 2. save that event to the event store (tip: check $kernel properties)
+     * 3. observe the event store
      *
      * Question: what was saved in the DB?
      */

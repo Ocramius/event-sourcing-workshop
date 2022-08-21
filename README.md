@@ -42,13 +42,53 @@ make interactive-shell
 
 ## Architecture
 
- * [`EventSourcingWorkshop\EventSourcing` documentation](./src/EventSourcing/README.md)
- * [`EventSourcingWorkshop\Commanding` documentation](./src/Commanding/README.md)
- * [example implementation](./test/EventSourcing/Example/README.md) used in integration tests
+* [`EventSourcingWorkshop\EventSourcing` documentation](./src/EventSourcing/README.md)
+* [`EventSourcingWorkshop\Commanding` documentation](./src/Commanding/README.md)
+* [example implementation](./test/EventSourcing/Example/README.md) used in integration tests
+
+---
 
 ## Exercises
 
- * [ ] TODO
+Note: all exercises are under the watchful eye of static analysis and CS tooling.
+Use `make quality-assurance` to validate your current work!
+
+### 1 - Standalone recording of a temperature
+
+Edit and run [bin/exercise-01-record-temperature.php](bin/exercise-01-record-temperature.php).
+
+1. create a new `TemperatureRecorded` [`DomainEvent`](src/EventSourcing/Domain/DomainEvent.php)
+   in [src/TemperatureTracking/Domain](src/TemperatureTracking/Domain)
+2. add it to the event stream (tip: use the given `$kernel`)
+3. observe the final database state and discuss
+
+Question: what was saved in the DB?
+
+### 2 - Tracking the last recorded temperature at each location
+
+Edit and run [bin/exercise-02-project-last-temperature.php](bin/exercise-02-project-last-temperature.php).
+
+1. create an iterator over the event stream (tip: use the given `$kernel`)
+2. generate a `map<string, float>` containing the last known temperature at each location
+3. save the generated map
+
+Question: what happens when you run the script multiple times?
+Question: can you record new temperatures and make them affect your state?
+
+### 3 - Send an alert when the temperature is below freezing point
+
+Edit and run [bin/exercise-03-alert-if-temperature-below-zero.php](bin/exercise-03-alert-if-temperature-below-zero.php).
+
+1. create a new `WhenTemperatureBelowZeroSendAlert` [`Policy`](src/EventSourcing/Domain/Policy.php)
+2. create a new `SendTemperateBelowZeroAlert` [`Command`](src/Commanding/Domain/Command.php)
+3. create a new `HandleSendTemperateBelowZeroAlert` [`CommandHandler`](src/Commanding/Infrastructure/CommandHandler.php).
+   It should only print some alert message to `STDERR` via `error_log()`, for now.
+4. wire it together with [`ProcessPolicies`](src/EventSourcing/Infrastructure/ProcessManager/ProcessPolicies.php)
+5. run it, see if you can get the alerts fired
+
+Question: what happens when you run the script multiple times?
+Question: what happens when new events appear, and you run the script again?
+Question: how should we deal with failures/crashes here?
 
 ## License
 

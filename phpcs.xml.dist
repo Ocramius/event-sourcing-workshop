@@ -10,6 +10,7 @@
 
     <arg value="nps"/>
 
+    <file>./bin</file>
     <file>./src</file>
     <file>./test</file>
 

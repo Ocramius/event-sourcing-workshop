@@ -91,7 +91,7 @@ final class Kernel
      *
      * @param non-empty-list<class-string<AbstractMigration>> $migrations
      */
-    public function ensureMigrationsRun(
+    public function ensureMigrationsRan(
         array $migrations = [
             CreateEventStreamTable::class,
             CreateEventStreamCursorsTable::class,

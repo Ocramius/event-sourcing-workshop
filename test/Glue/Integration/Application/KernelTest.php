@@ -25,6 +25,6 @@ final class KernelTest extends TestCase
         self::assertInstanceOf(TraverseEventStreamAndSaveStatusInSqlite::class, $kernel->traverseEventStream);
         self::assertInstanceOf(EventStreamAggregateRepository::class, $kernel->aggregateRepository(Aggregate::class));
 
-        $kernel->ensureMigrationsRun();
+        $kernel->ensureMigrationsRan();
     }
 }

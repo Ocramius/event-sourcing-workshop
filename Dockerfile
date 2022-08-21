@@ -40,7 +40,8 @@ RUN apt update \
     # Set default PHP version
     && update-alternatives --set php /usr/bin/php8.1 \
     && apt autoremove -y \
-    && apt clean 
+    && apt clean \
+    && git config --global --add safe.directory '*'
 
 WORKDIR /app
 

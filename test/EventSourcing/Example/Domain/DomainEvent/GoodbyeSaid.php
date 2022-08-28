@@ -19,7 +19,7 @@ final class GoodbyeSaid implements AggregateDomainEvent
     public function __construct(
         public readonly DateTimeImmutable $raisedAt,
         public readonly GreetingId $greeting,
-        public readonly string $message
+        public readonly string $message,
     ) {
     }
 

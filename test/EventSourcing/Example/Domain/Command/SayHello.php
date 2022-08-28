@@ -11,7 +11,7 @@ final class SayHello implements Command
 {
     /** @psalm-param non-empty-string $message */
     public function __construct(
-        public readonly string $message
+        public readonly string $message,
     ) {
     }
 }

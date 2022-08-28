@@ -27,7 +27,7 @@ final class TraverseEventStreamAndSaveStatusInSqlite implements TraverseEventStr
 {
     public function __construct(
         private readonly Connection $db,
-        private readonly DeSerializeEvent $loadEvent
+        private readonly DeSerializeEvent $loadEvent,
     ) {
     }
 
@@ -58,7 +58,7 @@ INSERT OR IGNORE INTO event_stream_cursors (name)
     VALUES (:name)
 SQL
             ,
-            ['name' => $name]
+            ['name' => $name],
         );
     }
 
@@ -77,7 +77,7 @@ FROM event_stream_cursors
 WHERE name = :name
 SQL
                 ,
-                ['name' => $name]
+                ['name' => $name],
             ));
     }
 
@@ -97,7 +97,7 @@ SQL
             [
                 'name'   => $name,
                 'offset' => $offset,
-            ]
+            ],
         );
     }
 
@@ -106,7 +106,7 @@ SQL
      *
      * @return array{no: positive-int, event: DomainEvent}| null
      */
-    private function nextEvent(int $offset): ?array
+    private function nextEvent(int $offset): array|null
     {
         $row = Type\union(
             Type\literal_scalar(false),
@@ -114,7 +114,7 @@ SQL
                 'no'                => Type\positive_int(),
                 'event_type'        => Type\non_empty_string(),
                 'payload'           => Type\non_empty_string(),
-            ])
+            ]),
         )->assert($this->db->fetchAssociative(
             <<<'SQL'
 SELECT
@@ -127,7 +127,7 @@ ORDER BY no ASC
 LIMIT 1
 SQL
             ,
-            ['offset' => $offset]
+            ['offset' => $offset],
         ));
 
         if ($row === false) {
@@ -144,8 +144,8 @@ SQL
                 $domainEventClass,
                 Json\typed(
                     $row['payload'],
-                    Type\dict(Type\non_empty_string(), Type\mixed())
-                )
+                    Type\dict(Type\non_empty_string(), Type\mixed()),
+                ),
             ),
         ];
     }

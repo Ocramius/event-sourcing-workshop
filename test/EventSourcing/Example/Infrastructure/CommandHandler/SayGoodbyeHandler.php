@@ -17,7 +17,7 @@ final class SayGoodbyeHandler implements CommandHandler
     /** @psalm-param AggregateRepository<Greeting> $greetings */
     public function __construct(
         private readonly AggregateRepository $greetings,
-        private readonly ClockInterface $clock
+        private readonly ClockInterface $clock,
     ) {
     }
 
@@ -26,7 +26,7 @@ final class SayGoodbyeHandler implements CommandHandler
     {
         $this->greetings->save(
             $this->greetings->get($command->greeting)
-                ->sayGoodbye($command->message, $this->clock->now())
+                ->sayGoodbye($command->message, $this->clock->now()),
         );
     }
 

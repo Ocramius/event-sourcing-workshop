@@ -37,7 +37,7 @@ final class EventStreamAggregateRepositoryTest extends TestCase
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
-                ->mapper()
+                ->mapper(),
         );
         $this->clock     = new FrozenClock(new DateTimeImmutable());
 
@@ -57,12 +57,12 @@ final class EventStreamAggregateRepositoryTest extends TestCase
         self::assertEquals(
             [5, 6],
             $this->db->fetchFirstColumn('SELECT aggregate_root_version FROM event_stream ORDER BY no ASC'),
-            'Aggregate versioning is correctly handled, and considers current version'
+            'Aggregate versioning is correctly handled, and considers current version',
         );
 
         EventSourcingTestHelper::assertEquivalentEvents(
             [$event1, $event2],
-            EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId)
+            EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId),
         );
     }
 
@@ -77,7 +77,7 @@ final class EventStreamAggregateRepositoryTest extends TestCase
         /** @psalm-suppress InvalidArgument we are loading a more specific aggregate type than the one declared */
         self::assertEquals(
             Greeting::fromHistory($greetingId, [$event1, $event2]),
-            $this->aggregates->get($greetingId)
+            $this->aggregates->get($greetingId),
         );
     }
 

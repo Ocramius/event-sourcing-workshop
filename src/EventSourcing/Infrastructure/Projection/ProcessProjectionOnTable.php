@@ -15,20 +15,20 @@ final class ProcessProjectionOnTable
         private readonly DbTableProjectionDefinition $definition,
         private readonly ProjectionTable $table,
         private readonly Connection $connection,
-        private readonly TraverseEventStream $traverseEventStream
+        private readonly TraverseEventStream $traverseEventStream,
     ) {
     }
 
     public static function forDefinition(
         DbTableProjectionDefinition $definition,
         Connection $connection,
-        TraverseEventStream $traverseEventStream
+        TraverseEventStream $traverseEventStream,
     ): self {
         return new self(
             $definition,
             new SQLiteProjectionTable($connection, $definition),
             $connection,
-            $traverseEventStream
+            $traverseEventStream,
         );
     }
 

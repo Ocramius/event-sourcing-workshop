@@ -19,14 +19,12 @@ use function Psl\Type\union;
 /** @psalm-immutable */
 final class Greeting implements Aggregate
 {
-    private GreetingId $id;
     /** @var positive-int|0 */
     private int $version             = 0;
     private bool $alreadySaidGoodbye = false;
 
-    private function __construct(GreetingId $id)
+    private function __construct(private GreetingId $id)
     {
-        $this->id = $id;
     }
 
     /**

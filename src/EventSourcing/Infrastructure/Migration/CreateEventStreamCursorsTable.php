@@ -22,8 +22,7 @@ CREATE TABLE event_stream_cursors (
     last_seen_event_no INTEGER NOT NULL DEFAULT 0,
     CHECK (length(name) > 0)
 )
-SQL
-        );
+SQL);
     }
 
     public function down(Schema $schema): void

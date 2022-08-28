@@ -67,7 +67,7 @@ final class ProcessPoliciesTest extends TestCase
         $runPolicies = new ProcessPolicies(
             [$policy1, $policy2, $policy3],
             $commandBus,
-            $traverseStream
+            $traverseStream,
         );
 
         $runPolicies();

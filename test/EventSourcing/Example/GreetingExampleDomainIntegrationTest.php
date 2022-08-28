@@ -53,7 +53,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
-                ->mapper()
+                ->mapper(),
         );
 
         EventSourcingTestHelper::runDatabaseMigrations(
@@ -62,7 +62,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
                 CreateEventStreamTable::class,
                 CreateEventStreamCursorsTable::class,
                 CreateTestProjectionTables::class,
-            ]
+            ],
         );
 
         /** @var AggregateRepository<Greeting> $aggregateRepository */
@@ -89,7 +89,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         EventSourcingTestHelper::assertRaisedEventTypesSequence(
             $this->db,
             [HelloSaid::class],
-            'Saved an aggregate in form of a single ' . HelloSaid::class
+            'Saved an aggregate in form of a single ' . HelloSaid::class,
         );
     }
 
@@ -100,7 +100,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
 
         $greetingId = GreetingId::fromString(
             EventSourcingTestHelper::fetchLastChangedAggregateId($this->db)
-                ->toString()
+                ->toString(),
         );
 
         $this->dispatchCommand(new SayGoodbye($greetingId, 'goodbye!'));
@@ -111,7 +111,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
                 new GoodbyeSaid($this->clock->now(), $greetingId, 'goodbye!'),
             ],
             EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId),
-            'A ' . GoodbyeSaid::class . ' associated to our previous ' . HelloSaid::class . ' was raised'
+            'A ' . GoodbyeSaid::class . ' associated to our previous ' . HelloSaid::class . ' was raised',
         );
     }
 
@@ -142,7 +142,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         $this->dispatchCommand(new SayHello('joe'));
         $greetingId = GreetingId::fromString(
             EventSourcingTestHelper::fetchLastChangedAggregateId($this->db)
-                ->toString()
+                ->toString(),
         );
 
         EventSourcingTestHelper::runPolicies($this->db, $this->commandBus, $this->loadEvent, [new WhenHelloSaidThenSayGoodbye()]);
@@ -153,7 +153,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
                 new GoodbyeSaid($this->clock->now(), $greetingId, 'goodbye - joe'),
             ],
             EventSourcingTestHelper::fetchAllEventsForAggregate($this->db, $this->loadEvent, $greetingId),
-            GoodbyeSaid::class . ' was raised automatically by policy + automation'
+            GoodbyeSaid::class . ' was raised automatically by policy + automation',
         );
     }
 
@@ -167,8 +167,8 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
                 Type\string()->assert($this->db->fetchOne('SELECT payload FROM event_stream ORDER BY no DESC LIMIT 1')),
                 Type\shape([
                     'raisedAt' => Type\non_empty_string(),
-                ])
-            )['raisedAt']
+                ]),
+            )['raisedAt'],
         );
 
         self::assertNotFalse($greeting1Date);
@@ -180,15 +180,15 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
                 Type\string()->assert($this->db->fetchOne('SELECT payload FROM event_stream ORDER BY no DESC LIMIT 1')),
                 Type\shape([
                     'raisedAt' => Type\non_empty_string(),
-                ])
-            )['raisedAt']
+                ]),
+            )['raisedAt'],
         );
 
         self::assertNotFalse($greeting2Date);
 
         self::assertEmpty(
             $this->db->fetchAllAssociative('SELECT * FROM projection_date_of_last_dispensed_greeting'),
-            'Projection table is empty at first'
+            'Projection table is empty at first',
         );
 
         EventSourcingTestHelper::runProjector(new DateOfLastDispensedGreeting(), $this->db, $this->loadEvent);
@@ -197,9 +197,9 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
             $greeting1Date,
             DateTimeImmutable::createFromFormat(
                 DateTimeImmutable::RFC3339_EXTENDED,
-                string()->assert($this->db->fetchOne('SELECT last_dispensed_greeting FROM projection_date_of_last_dispensed_greeting'))
+                string()->assert($this->db->fetchOne('SELECT last_dispensed_greeting FROM projection_date_of_last_dispensed_greeting')),
             ),
-            'Projection was updated with the last raised event'
+            'Projection was updated with the last raised event',
         );
 
         EventSourcingTestHelper::runProjector(new DateOfLastDispensedGreeting(), $this->db, $this->loadEvent);
@@ -208,9 +208,9 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
             $greeting2Date,
             DateTimeImmutable::createFromFormat(
                 DateTimeImmutable::RFC3339_EXTENDED,
-                string()->assert($this->db->fetchOne('SELECT last_dispensed_greeting FROM projection_date_of_last_dispensed_greeting'))
+                string()->assert($this->db->fetchOne('SELECT last_dispensed_greeting FROM projection_date_of_last_dispensed_greeting')),
             ),
-            'Projection was updated with the last raised event'
+            'Projection was updated with the last raised event',
         );
     }
 
@@ -225,13 +225,13 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
 
         self::assertEmpty(
             $this->db->fetchAllAssociative('SELECT * FROM projection_pending_goodbyes'),
-            'Projection table is empty at first'
+            'Projection table is empty at first',
         );
 
         EventSourcingTestHelper::runProjector(new PendingGoodbyes(), $this->db, $this->loadEvent);
         self::assertCount(
             2,
-            $this->db->fetchFirstColumn('SELECT * FROM projection_pending_goodbyes')
+            $this->db->fetchFirstColumn('SELECT * FROM projection_pending_goodbyes'),
         );
 
         $this->dispatchCommand(new SayGoodbye(GreetingId::fromString($greeting2Uuid->toString()), 'goodbye 2'));
@@ -240,7 +240,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         EventSourcingTestHelper::runProjector(new PendingGoodbyes(), $this->db, $this->loadEvent);
         self::assertEmpty(
             $this->db->fetchAllAssociative('SELECT * FROM projection_pending_goodbyes'),
-            'Projection table is empty at first'
+            'Projection table is empty at first',
         );
     }
 

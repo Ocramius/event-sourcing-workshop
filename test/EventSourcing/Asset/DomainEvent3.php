@@ -13,7 +13,7 @@ final class DomainEvent3 implements DomainEvent
     /** @psalm-param array<non-empty-string, string|int|bool|float|null> $data */
     public function __construct(
         private readonly DateTimeImmutable $raisedAt,
-        private readonly array $data
+        private readonly array $data,
     ) {
     }
 

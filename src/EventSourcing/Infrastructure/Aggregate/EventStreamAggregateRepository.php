@@ -26,7 +26,7 @@ final class EventStreamAggregateRepository implements AggregateRepository
 {
     public function __construct(
         private readonly Connection $db,
-        private readonly DeSerializeEvent $loadEvent
+        private readonly DeSerializeEvent $loadEvent,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class EventStreamAggregateRepository implements AggregateRepository
                         'aggregate_root_version' => Types::INTEGER,
                         'time_of_recording'      => Types::STRING,
                         'payload'                => Types::JSON,
-                    ]
+                    ],
                 );
             }
         });
@@ -89,7 +89,7 @@ SQL
             ],
             [
                 'aggregateId' => Types::STRING,
-            ]
+            ],
         );
 
         if ($events === []) {
@@ -103,10 +103,10 @@ SQL
 
                 return ($this->loadEvent)(
                     $row['event_type'],
-                    typed($row['payload'], dict(non_empty_string(), mixed()))
+                    typed($row['payload'], dict(non_empty_string(), mixed())),
                 );
             },
-            $events
+            $events,
         );
 
         /**

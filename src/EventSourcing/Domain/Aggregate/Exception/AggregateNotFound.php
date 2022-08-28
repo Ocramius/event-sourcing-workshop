@@ -26,7 +26,7 @@ final class AggregateNotFound extends RuntimeException
         return new self(sprintf(
             'Could not locate aggregate "%s" with identifier "%s"',
             $id->aggregateType(),
-            $id->toString()
+            $id->toString(),
         ));
     }
 }

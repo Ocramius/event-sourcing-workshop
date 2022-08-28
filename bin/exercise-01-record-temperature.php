@@ -14,7 +14,7 @@ use Throwable;
 use UnexpectedValueException;
 
 /**
- * Usage: ./exercise-01-record-temperature <string $location> <float $celsius>
+ * Usage: ./exercise-01-record-temperature.php <string $location> <float $celsius>
  *
  * @psalm-suppress UnusedVariable until the exercise is complete, some unused symbols may be sitting around
  */
@@ -27,7 +27,7 @@ use UnexpectedValueException;
             2 => Type\float(),
         ])->coerce(Env\args());
     } catch (Throwable $e) {
-        throw new UnexpectedValueException('Usage: ./exercise-01-record-temperature <string $location> <float $celsius>', previous: $e);
+        throw new UnexpectedValueException('Usage: ./exercise-01-record-temperature.php <string $location> <float $celsius>', previous: $e);
     }
 
     $kernel = new Kernel();

@@ -10,7 +10,7 @@
 
     <arg value="nps"/>
 
-    <file>./bin</file>
+    <file>./exercises</file>
     <file>./src</file>
     <file>./test</file>
 

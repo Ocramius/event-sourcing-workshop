@@ -8,7 +8,7 @@
     findUnusedCode="true"
 >
     <projectFiles>
-        <directory name="bin"/>
+        <directory name="exercises"/>
         <directory name="src"/>
         <directory name="test"/>
         <ignoreFiles>

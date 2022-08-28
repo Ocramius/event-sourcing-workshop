@@ -8,8 +8,6 @@ use DateTimeImmutable;
 use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 use EventSourcingWorkshop\TimeTracking\Domain\Date;
 
-use function Psl\invariant;
-
 /** @psalm-immutable */
 final class ADayHasPassed implements DomainEvent
 {

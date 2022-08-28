@@ -4,17 +4,13 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshopTest\TimeTracking\Unit\Domain;
 
-use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\Aggregate;
-use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateChanged;
-use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateDomainEvent;
-use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateId;
 use EventSourcingWorkshop\TimeTracking\Domain\Date;
 use PHPUnit\Framework\TestCase;
 use Psl\Exception\InvariantViolationException;
 
 /** @covers \EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateChanged */
 final class DateTest extends TestCase
-{
+{    
     /**
      * @param non-empty-string $date
      *

@@ -38,7 +38,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
-                ->mapper()
+                ->mapper(),
         );
 
         EventSourcingTestHelper::runDatabaseMigrations(
@@ -46,7 +46,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
             [
                 CreateEventStreamTable::class,
                 CreateEventStreamCursorsTable::class,
-            ]
+            ],
         );
         $this->traverse = new TraverseEventStreamAndSaveStatusInSqlite($this->db, $this->loadEvent);
     }
@@ -62,7 +62,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
                 ],
             ],
             $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors'),
-            'Traversal has been registered'
+            'Traversal has been registered',
         );
     }
 
@@ -76,7 +76,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
 
         self::assertSame(
             [DomainEvent1::class, DomainEvent3::class, DomainEvent2::class],
-            Dict\map(($this->traverse)('example'), get_class(...))
+            Dict\map(($this->traverse)('example'), get_class(...)),
         );
         self::assertSame(
             [
@@ -85,7 +85,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
                     'last_seen_event_no' => 3,
                 ],
             ],
-            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors')
+            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors'),
         );
     }
 
@@ -101,7 +101,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
         self::assertSame(
             0,
             Iter\count(($this->traverse)('example')),
-            'Repeated named traversal has no effect'
+            'Repeated named traversal has no effect',
         );
 
         self::assertSame(
@@ -111,7 +111,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
                     'last_seen_event_no' => 3,
                 ],
             ],
-            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors')
+            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors'),
         );
     }
 
@@ -131,7 +131,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
         self::assertSame(
             [DomainEvent3::class],
             Dict\map(($this->traverse)('example'), get_class(...)),
-            'Traversal resumed from right after $event3'
+            'Traversal resumed from right after $event3',
         );
 
         self::assertSame(
@@ -141,7 +141,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
                     'last_seen_event_no' => 4,
                 ],
             ],
-            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors')
+            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors'),
         );
     }
 
@@ -172,7 +172,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
                     'last_seen_event_no' => 3,
                 ],
             ],
-            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors ORDER BY name ASC')
+            $this->db->fetchAllAssociative('SELECT name, last_seen_event_no FROM event_stream_cursors ORDER BY name ASC'),
         );
     }
 }

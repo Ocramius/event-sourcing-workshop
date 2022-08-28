@@ -38,7 +38,7 @@ final class CommandNotHandledTest extends TestCase
 
         $exception = CommandNotHandled::fromCommandAndConfiguredCommandHandlers(
             $command3,
-            [$commandHandler1, $commandHandler2]
+            [$commandHandler1, $commandHandler2],
         );
 
         self::assertSame($command3, $exception->command);
@@ -52,7 +52,7 @@ Configured handlers:
 }
 MESSAGE
             ,
-            $exception->getMessage()
+            $exception->getMessage(),
         );
     }
 }

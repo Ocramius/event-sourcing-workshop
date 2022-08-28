@@ -26,7 +26,7 @@ final class AggregateChanged
     private function __construct(
         public readonly AggregateId $aggregate,
         public readonly array $raisedEvents,
-        public readonly int $previousVersion
+        public readonly int $previousVersion,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class AggregateChanged
     public static function changed(
         AggregateId $aggregate,
         array $raisedEvents,
-        int $previousVersion
+        int $previousVersion,
     ): self {
         return new self($aggregate, $raisedEvents, $previousVersion);
     }
@@ -59,7 +59,7 @@ final class AggregateChanged
      */
     public static function created(
         AggregateId $aggregate,
-        array $raisedEvents
+        array $raisedEvents,
     ): self {
         return new self($aggregate, $raisedEvents, 0);
     }

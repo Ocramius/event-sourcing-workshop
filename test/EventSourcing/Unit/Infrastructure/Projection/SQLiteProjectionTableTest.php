@@ -31,7 +31,7 @@ final class SQLiteProjectionTableTest extends TestCase
             ->method('executeStatement')
             ->with(
                 'INSERT OR IGNORE INTO dummy_table (foo,bar,baz) VALUES (?,?,?)',
-                ['a', 'b', 3]
+                ['a', 'b', 3],
             );
 
         $this->table->insertIgnore([
@@ -47,7 +47,7 @@ final class SQLiteProjectionTableTest extends TestCase
             ->method('executeStatement')
             ->with(
                 'INSERT INTO dummy_table (foo,bar,baz) VALUES (?,?,?) ON CONFLICT DO UPDATE SET foo=excluded.foo,bar=excluded.bar,baz=excluded.baz',
-                ['a', 'b', 3]
+                ['a', 'b', 3],
             );
 
         $this->table->upsert([
@@ -68,7 +68,7 @@ final class SQLiteProjectionTableTest extends TestCase
                     'bar' => 'b',
                     'baz' => 3,
                 ],
-                ['my_id' => 'the_id']
+                ['my_id' => 'the_id'],
             );
 
         $this->table->update(
@@ -77,7 +77,7 @@ final class SQLiteProjectionTableTest extends TestCase
                 'foo' => 'a',
                 'bar' => 'b',
                 'baz' => 3,
-            ]
+            ],
         );
     }
 
@@ -87,7 +87,7 @@ final class SQLiteProjectionTableTest extends TestCase
             ->method('delete')
             ->with(
                 'dummy_table',
-                ['my_id' => 'the_id']
+                ['my_id' => 'the_id'],
             );
 
         $this->table->delete(['my_id' => 'the_id']);

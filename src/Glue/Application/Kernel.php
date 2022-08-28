@@ -55,7 +55,7 @@ final class Kernel
         $this->clock               = new SystemClock(new DateTimeZone('UTC'));
         $this->deSerializeEvent    = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder()) // @TODO aggregate ID constructors need some help
-            ->mapper()
+            ->mapper(),
         );
         $this->eventStore          = new SQLiteEventStore($this->db, $this->deSerializeEvent);
         $this->traverseEventStream = new TraverseEventStreamAndSaveStatusInSqlite($this->db, $this->deSerializeEvent);
@@ -95,11 +95,11 @@ final class Kernel
         array $migrations = [
             CreateEventStreamTable::class,
             CreateEventStreamCursorsTable::class,
-        ]
+        ],
     ): void {
         $dependencyFactory = DependencyFactory::fromConnection(
             new ConfigurationArray(['migrations' => $migrations]),
-            new ExistingConnection($this->db)
+            new ExistingConnection($this->db),
         );
 
         $dependencyFactory->getMetadataStorage()

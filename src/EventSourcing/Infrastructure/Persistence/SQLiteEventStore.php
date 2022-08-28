@@ -25,7 +25,7 @@ final class SQLiteEventStore implements EventStore
 {
     public function __construct(
         private readonly Connection $db,
-        private readonly DeSerializeEvent $deSerializeEvent
+        private readonly DeSerializeEvent $deSerializeEvent,
     ) {
     }
 
@@ -36,7 +36,7 @@ final class SQLiteEventStore implements EventStore
                 invariant(
                     ! $event instanceof AggregateDomainEvent,
                     'Please save ' . AggregateChanged::class
-                    . ' instances through ' . AggregateRepository::class . ' instead'
+                    . ' instances through ' . AggregateRepository::class . ' instead',
                 );
 
                 $this->db->insert(
@@ -46,7 +46,7 @@ final class SQLiteEventStore implements EventStore
                         'time_of_recording' => $event->raisedAt()
                             ->format(DateTimeImmutable::RFC3339_EXTENDED),
                         'payload'           => Json\encode($event->toArray()),
-                    ]
+                    ],
                 );
             }
         });
@@ -104,7 +104,7 @@ final class SQLiteEventStore implements EventStore
             )
             . ' ORDER BY no ASC',
             $parameters,
-            $parameterTypes
+            $parameterTypes,
         );
 
         while ($row = $type->assert($result->fetchAssociative())) {
@@ -112,7 +112,7 @@ final class SQLiteEventStore implements EventStore
 
             invariant(
                 is_a($eventType, DomainEvent::class, true),
-                'Event type must be a subtype of ' . DomainEvent::class
+                'Event type must be a subtype of ' . DomainEvent::class,
             );
 
             yield ($this->deSerializeEvent)($eventType, Json\typed($row['payload'], $jsonType));

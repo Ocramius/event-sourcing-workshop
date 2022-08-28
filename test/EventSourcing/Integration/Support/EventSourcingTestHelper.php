@@ -57,7 +57,7 @@ final class EventSourcingTestHelper
     {
         $dependencyFactory = DependencyFactory::fromConnection(
             new ConfigurationArray(['migrations' => $migrations]),
-            new ExistingConnection($connection)
+            new ExistingConnection($connection),
         );
 
         $dependencyFactory->getMetadataStorage()
@@ -74,7 +74,7 @@ final class EventSourcingTestHelper
     /** @psalm-param non-empty-list<DomainEvent> $events */
     public static function appendEvents(
         Connection $db,
-        array $events
+        array $events,
     ): void {
         /** @psalm-var array<non-empty-string, positive-int> */
         $aggregateVersions = [];
@@ -101,7 +101,7 @@ final class EventSourcingTestHelper
                     'time_of_recording'      => $event->raisedAt()
                         ->format('Y-m-d H:i:s.u'),
                     'payload'                => encode($event->toArray()),
-                ]
+                ],
             );
 
             if (! ($event instanceof AggregateDomainEvent) || $version === null) {
@@ -121,7 +121,7 @@ final class EventSourcingTestHelper
     public static function assertRaisedEventTypesSequence(
         Connection $db,
         array $expectedEvents,
-        string $message = 'Given sequence of event matches what is stored in the whole event store'
+        string $message = 'Given sequence of event matches what is stored in the whole event store',
     ): void {
         PHPUnitAssertions::assertEquals(
             $expectedEvents,
@@ -134,9 +134,9 @@ FROM
     event_stream
 ORDER BY
     no ASC
-SQL
+SQL,
                 )),
-            $message
+            $message,
         );
     }
 
@@ -150,7 +150,7 @@ SQL
     public static function assertEquivalentEvents(
         array $expected,
         array $actual,
-        string $message = 'Provided list of events are equivalent (ignoring the time at which they were raised)'
+        string $message = 'Provided list of events are equivalent (ignoring the time at which they were raised)',
     ): void {
         $convert = static fn (AggregateDomainEvent $event): array => [
             'class'   => $event::class,
@@ -160,7 +160,7 @@ SQL
         PHPUnitAssertions::assertEquals(
             array_map($convert, $expected),
             array_map($convert, $actual),
-            $message
+            $message,
         );
     }
 
@@ -210,8 +210,8 @@ ORDER BY
 SQL
                     ,
                     ['id' => $id->toString()],
-                    ['id' => Types::STRING]
-                ))
+                    ['id' => Types::STRING],
+                )),
         );
     }
 
@@ -219,22 +219,22 @@ SQL
     {
         return Uuid::fromString(
             non_empty_string()
-                ->coerce($db->fetchOne('SELECT aggregate_root_id FROM event_stream ORDER BY no DESC LIMIT 1'))
+                ->coerce($db->fetchOne('SELECT aggregate_root_id FROM event_stream ORDER BY no DESC LIMIT 1')),
         );
     }
 
     public static function runProjector(
         DbTableProjectionDefinition $definition,
         Connection $connection,
-        DeSerializeEvent $loadEvent
+        DeSerializeEvent $loadEvent,
     ): void {
         ProcessProjectionOnTable::forDefinition(
             $definition,
             $connection,
             new TraverseEventStreamAndSaveStatusInSqlite(
                 $connection,
-                $loadEvent
-            )
+                $loadEvent,
+            ),
         )();
     }
 
@@ -249,7 +249,7 @@ SQL
         Connection $connection,
         CommandBus $commandBus,
         DeSerializeEvent $loadEvent,
-        array $policies
+        array $policies,
     ): void {
         (new ProcessPolicies(
             $policies,
@@ -257,7 +257,7 @@ SQL
             new TraverseEventStreamAndSaveStatusInSqlite(
                 $connection,
                 $loadEvent,
-            )
+            ),
         ))();
     }
 }

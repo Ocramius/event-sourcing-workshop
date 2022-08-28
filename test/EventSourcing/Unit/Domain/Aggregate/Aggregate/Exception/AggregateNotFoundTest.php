@@ -23,7 +23,7 @@ final class AggregateNotFoundTest extends TestCase
         self::assertSame(
             'Could not locate aggregate "An\Aggregate" with identifier "foo bar baz"',
             AggregateNotFound::forAggregateId($id)
-                ->getMessage()
+                ->getMessage(),
         );
     }
 }

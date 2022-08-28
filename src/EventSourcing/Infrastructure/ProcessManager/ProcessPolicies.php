@@ -23,7 +23,7 @@ final class ProcessPolicies
     public function __construct(
         private readonly array $policies,
         private readonly CommandBus $commandBus,
-        private readonly TraverseEventStream $traverseEventStream
+        private readonly TraverseEventStream $traverseEventStream,
     ) {
     }
 

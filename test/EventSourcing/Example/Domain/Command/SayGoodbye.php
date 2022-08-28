@@ -13,7 +13,7 @@ final class SayGoodbye implements Command
     /** @psalm-param non-empty-string $message */
     public function __construct(
         public readonly GreetingId $greeting,
-        public readonly string $message
+        public readonly string $message,
     ) {
     }
 }

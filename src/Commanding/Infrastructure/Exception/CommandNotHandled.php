@@ -24,7 +24,7 @@ final class CommandNotHandled extends RuntimeException
     /** @param list<CommandHandler> $commandHandlers */
     public static function fromCommandAndConfiguredCommandHandlers(
         Command $command,
-        array $commandHandlers
+        array $commandHandlers,
     ): self {
         return new self(
             Str\format(
@@ -35,10 +35,10 @@ final class CommandNotHandled extends RuntimeException
                         Vec\map($commandHandlers, static fn (CommandHandler $handler): string => $handler->handlesCommand()),
                         Vec\map($commandHandlers, get_class(...)),
                     ),
-                    true
-                )
+                    true,
+                ),
             ),
-            $command
+            $command,
         );
     }
 }

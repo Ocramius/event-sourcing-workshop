@@ -30,15 +30,13 @@ CREATE TABLE projection_date_of_last_dispensed_greeting (
     position TEXT CHECK(position IN ('last')) NOT NULL PRIMARY KEY DEFAULT 'last',
     last_dispensed_greeting DATETIME(6) NOT NULL
 );
-SQL
-        );
+SQL);
 
         $this->addSql(<<<'SQL'
 CREATE TABLE projection_pending_goodbyes (
     greeting CHAR(36) NOT NULL PRIMARY KEY
 );
-SQL
-        );
+SQL);
     }
 
     public function down(Schema $schema): void

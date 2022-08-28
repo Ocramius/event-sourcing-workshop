@@ -38,7 +38,7 @@ final class SQLiteEventStoreTest extends TestCase
         $this->db                = EventSourcingTestHelper::freshDatabase();
         $this->deserializeEvents = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
-                ->mapper()
+                ->mapper(),
         );
 
         EventSourcingTestHelper::runDatabaseMigrations($this->db, [CreateEventStreamTable::class]);
@@ -75,12 +75,12 @@ final class SQLiteEventStoreTest extends TestCase
 
         self::assertEquals(
             [$event4, $event3],
-            iterator_to_array($this->eventStore->stream(['time_of_recording_after' => $today]))
+            iterator_to_array($this->eventStore->stream(['time_of_recording_after' => $today])),
         );
 
         self::assertEquals(
             [$event2, $event1],
-            iterator_to_array($this->eventStore->stream(['time_of_recording_before' => $today]))
+            iterator_to_array($this->eventStore->stream(['time_of_recording_before' => $today])),
         );
     }
 
@@ -97,7 +97,7 @@ final class SQLiteEventStoreTest extends TestCase
             [$event1, $event4, $event3],
             iterator_to_array($this->eventStore->stream([
                 'event_type' => [DomainEvent1::class, DomainEvent3::class],
-            ]))
+            ])),
         );
     }
 
@@ -112,7 +112,7 @@ final class SQLiteEventStoreTest extends TestCase
 
         self::assertEquals(
             [$event4, $event3],
-            iterator_to_array($this->eventStore->stream(['no_after' => 2]))
+            iterator_to_array($this->eventStore->stream(['no_after' => 2])),
         );
     }
 
@@ -129,7 +129,7 @@ final class SQLiteEventStoreTest extends TestCase
             [$event2, $event3],
             iterator_to_array($this->eventStore->stream([
                 'no' => [1, 4],
-            ]))
+            ])),
         );
     }
 
@@ -140,7 +140,7 @@ final class SQLiteEventStoreTest extends TestCase
         $this->expectException(InvariantViolationException::class);
         $this->expectExceptionMessage(
             'Please save ' . AggregateChanged::class . ' instances through '
-            . AggregateRepository::class . ' instead'
+            . AggregateRepository::class . ' instead',
         );
         $this->eventStore->save($event);
     }
@@ -166,11 +166,11 @@ final class SQLiteEventStoreTest extends TestCase
      * Creating a time instance with {@see DateTimeImmutable::RFC3339_EXTENDED} time, and dropping anything
      * below milliseconds (which we don't currently deal with).
      */
-    private function makeTime(?DateTimeImmutable $givenTime = null): DateTimeImmutable
+    private function makeTime(DateTimeImmutable|null $givenTime = null): DateTimeImmutable
     {
         $time = DateTimeImmutable::createFromFormat(
             DateTimeImmutable::RFC3339_EXTENDED,
-            ($givenTime ?? new DateTimeImmutable())->format(DateTimeImmutable::RFC3339_EXTENDED)
+            ($givenTime ?? new DateTimeImmutable())->format(DateTimeImmutable::RFC3339_EXTENDED),
         );
 
         assert($time !== false);

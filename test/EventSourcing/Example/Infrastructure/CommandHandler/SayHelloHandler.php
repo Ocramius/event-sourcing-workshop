@@ -17,7 +17,7 @@ final class SayHelloHandler implements CommandHandler
     /** @psalm-param AggregateRepository<Greeting> $greetings */
     public function __construct(
         private readonly AggregateRepository $greetings,
-        private readonly ClockInterface $clock
+        private readonly ClockInterface $clock,
     ) {
     }
 

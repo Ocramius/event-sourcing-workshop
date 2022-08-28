@@ -37,8 +37,7 @@ CREATE TABLE event_stream (
         )
     )
 )
-SQL
-        );
+SQL);
         $this->addSql('CREATE INDEX event_stream_aggregate_root_id ON event_stream (aggregate_root_id)');
         $this->addSql('CREATE INDEX event_stream_event_type_no ON event_stream (event_type, no)');
 

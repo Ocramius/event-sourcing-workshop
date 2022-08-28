@@ -17,7 +17,7 @@ final class SQLiteProjectionTable implements ProjectionTable
 {
     public function __construct(
         private readonly Connection $connection,
-        private readonly DbTableProjectionDefinition $tableDefinition
+        private readonly DbTableProjectionDefinition $tableDefinition,
     ) {
     }
 
@@ -28,7 +28,7 @@ final class SQLiteProjectionTable implements ProjectionTable
             'INSERT OR IGNORE INTO ' . $this->tableDefinition->tableName()
             . ' (' . implode(',', array_keys($record)) . ') '
             . 'VALUES (' . implode(',', $this->makePlaceholders(count($record))) . ')',
-            array_values($record)
+            array_values($record),
         );
     }
 
@@ -44,9 +44,9 @@ final class SQLiteProjectionTable implements ProjectionTable
                 static function (string $column): string {
                     return $column . '=excluded.' . $column;
                 },
-                $columns
+                $columns,
             )),
-            array_values($record)
+            array_values($record),
         );
     }
 

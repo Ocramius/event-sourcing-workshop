@@ -105,14 +105,32 @@ Question: how should we deal with failures/crashes here?
 
 ### 5 - Payment aggregate
 
-We need to demonstrate how aggregates work.
+This exercise is a bit more complex, and shows how to work with event-sourced
+[`Aggregate`](src/EventSourcing/Domain/Aggregate/Aggregate.php) objects.
 
-* [ ] TODO: idea of:
-    * requesting a payment
-    * tracking late payments
-        * requires a time ticker process
-        * send out late payment notices
-    * tracking completed payments
+The idea is as follows: we have a [`Payment`](src/Payment/Domain/Aggregate/Payment.php) that we can initiate with
+a given [`Amount`](src/Payment/Domain/Amount.php) and [`DebtorEmail`](src/Payment/Domain/DebtorEmail.php).
+
+The payment can be marked as completed, but it also has a deadline: whenever the deadline is passed, we want to
+notify the associated `DebtorEmail`.
+
+The final aim is to have a message printed out by our background processes whenever a debtor is notified of a
+late payment.
+
+To do that, we need to:
+
+1. design a [`projection`](src/EventSourcing/Infrastructure/Projection/DbTableProjectionDefinition.php) that keeps
+   track of currently active payments, as well as their deadlines.
+   Edit [`bin/exercise-05-project-payment-deadlines.php`](bin/exercise-05-project-payment-deadlines.php).
+2. have a way to start a payment flow.
+   Edit [`bin/exercise-05-request-payment.php`](bin/exercise-05-request-payment.php).
+3. have a way to complete a payment flow.
+   Edit [`bin/exercise-05-record-payment-received.php`](bin/exercise-05-record-payment-received.php).
+4. inject an [`ADayHasPassed`](src/TimeTracking/Domain/DomainEvent/ADayHasPassed.php) event in our system.
+   Run [`bin/exercise-05-record-day-passed.php`](bin/exercise-05-record-day-passed.php) (this part
+   is already functional / no need to edit).
+5. react to [`ADayHasPassed`](src/TimeTracking/Domain/DomainEvent/ADayHasPassed.php) events with a policy.
+   Edit [`bin/exercise-05-run-payment-process.php`](bin/exercise-05-run-payment-process.php)
 
 ### 6 - Collaborative event-storming
 

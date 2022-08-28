@@ -13,7 +13,7 @@ use Throwable;
 use UnexpectedValueException;
 
 /**
- * Usage: ./exercise-05-record-payment.php <non-empty-string $paymentId> <positive-int $amount>
+ * Usage: ./exercise-05-record-payment-received.php <non-empty-string $paymentId> <positive-int $amount>
  *
  * Given the ID of a payment, this script will perform the payment for the given amount.
  *
@@ -29,7 +29,7 @@ use UnexpectedValueException;
         ])->coerce(Env\args());
     } catch (Throwable $e) {
         throw new UnexpectedValueException(
-            'Usage: ./exercise-05-record-payment.php  <non-empty-string $paymentId> <positive-int $amount>',
+            'Usage: ./exercise-05-record-payment-received.php  <non-empty-string $paymentId> <positive-int $amount>',
             previous: $e,
         );
     }

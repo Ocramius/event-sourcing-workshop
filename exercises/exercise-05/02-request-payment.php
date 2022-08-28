@@ -13,23 +13,23 @@ use Throwable;
 use UnexpectedValueException;
 
 /**
- * Usage: ./exercise-05-record-payment-received.php <non-empty-string $paymentId> <positive-int $amount>
+ * Usage: ./02-request-payment <non-empty-string $emailAddress> <positive-int $amount>
  *
- * Given the ID of a payment, this script will perform the payment for the given amount.
+ * This script initiates the request for a new payment
  *
  * @psalm-suppress UnusedVariable these variables will be in use once the exercise is complete
  */
 (static function (): void {
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../../vendor/autoload.php';
 
     try {
-        [, $paymentId, $amount] = Type\shape([
+        [, $emailAddress, $amount] = Type\shape([
             1 => Type\non_empty_string(),
             2 => Type\positive_int(),
         ])->coerce(Env\args());
     } catch (Throwable $e) {
         throw new UnexpectedValueException(
-            'Usage: ./exercise-05-record-payment-received.php  <non-empty-string $paymentId> <positive-int $amount>',
+            'Usage: ./02-request-payment <non-empty-string $emailAddress> <positive-int $amount>',
             previous: $e,
         );
     }
@@ -39,10 +39,12 @@ use UnexpectedValueException;
     $kernel->ensureMigrationsRan();
 
     /**
-     * @TODO 1. fetch the existing {@see Payment} from the {@see AggregateRepository}. Tip: use the $kernel!
-     * @TODO 2. mark the {@see Payment} as paid
-     * @TODO 3. save the result!
-     * @TODO 4. verify the data in the DB
+     * @TODO 1. create a new {@see Payment} (look at its public API) using the given $emailAddress and $amount
+     * @TODO 2. save it to the DB!
+     * @TODO 3. verify the data in the DB
+     *
+     * Question: what got saved?
+     * Question: what is different between an {@see AggregateDomainEvent} and a {@see DomainEvent}?
      */
     throw new BadMethodCallException('Complete the implementation below and remove this exception');
 })();

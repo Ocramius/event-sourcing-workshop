@@ -9,7 +9,7 @@ use BadMethodCallException;
 use EventSourcingWorkshop\Glue\Application\Kernel;
 
 (static function (): void {
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../../vendor/autoload.php';
 
     $kernel = new Kernel();
 

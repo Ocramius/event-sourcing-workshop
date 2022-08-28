@@ -14,7 +14,7 @@ use Throwable;
 use UnexpectedValueException;
 
 /**
- * Usage: ./exercise-05-record-day-passed.php <string (Y-m-d) $date>
+ * Usage: ./04-record-day-passed.php <string (Y-m-d) $date>
  *
  * This script injects an {@see ADayHasPassed} event in the event store: this would be used in
  * a nightly cronjob or such, to record the fact that a day has passed, allowing policies to
@@ -23,7 +23,7 @@ use UnexpectedValueException;
  * This script is complete as-is: nothing to adjust here.
  */
 (static function (): void {
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../../vendor/autoload.php';
 
     try {
         [, $date] = Type\shape([
@@ -31,7 +31,7 @@ use UnexpectedValueException;
         ])->coerce(Env\args());
     } catch (Throwable $e) {
         throw new UnexpectedValueException(
-            'Usage: ./exercise-05-record-day-passed.php <string (Y-m-d) $date>',
+            'Usage: ./04-record-day-passed.php <string (Y-m-d) $date>',
             previous: $e,
         );
     }

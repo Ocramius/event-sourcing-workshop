@@ -14,12 +14,12 @@ use EventSourcingWorkshop\Glue\Application\Kernel;
 use EventSourcingWorkshop\Payment\Domain\Aggregate\Payment;
 
 /**
- * Usage: ./exercise-05-project-payment-deadlines.php
+ * Usage: ./01-project-payment-deadlines.php
  *
  * Runs DB projections related to {@see Payment} logic.
  */
 (static function (): void {
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../../vendor/autoload.php';
 
     $kernel = new Kernel();
 

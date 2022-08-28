@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshop\Exercise\TemperatureTracking;
 
+// phpcs:disable SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse
 use BadMethodCallException;
 use EventSourcingWorkshop\EventSourcing\Domain\DomainEvent;
 use EventSourcingWorkshop\Glue\Application\Kernel;

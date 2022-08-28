@@ -31,6 +31,12 @@ deptrac:
           regex: src/TemperatureTracking/.*
         - type: directory
           regex: test/TemperatureTracking/.*
+    - name: TimeTracking
+      collectors:
+        - type: directory
+          regex: src/TimeTracking/.*
+        - type: directory
+          regex: test/TimeTracking/.*
   
   ruleset:
     Commanding: ~
@@ -42,4 +48,5 @@ deptrac:
     TemperatureTracking:
       - Commanding
       - EventSourcing
-      
+    TimeTracking:
+      - EventSourcing

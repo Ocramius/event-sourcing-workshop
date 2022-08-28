@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshop\Payment\Infrastructure\CommandHandler;
 
+use Closure;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use EventSourcingWorkshop\Commanding\Domain\Command;
@@ -16,8 +17,13 @@ use function error_log;
 /** @template-implements CommandHandler<SendNotificationsForLatePayments> */
 final class HandleSendNotificationsForLatePayments implements CommandHandler
 {
-    public function __construct(private readonly Connection $db)
+    /** @var Closure(string): void */
+    private readonly Closure $printOutput;
+
+    /** @param callable(string): void $printOutput */
+    public function __construct(private readonly Connection $db, callable|null $printOutput = null)
     {
+        $this->printOutput = Closure::fromCallable($printOutput ?? error_log(...));
     }
 
     /** {@inheritDoc} */
@@ -39,7 +45,9 @@ SQL,
         ));
 
         foreach ($latePayments as $latePayment) {
-            error_log('Notifying ' . $latePayment['debtor'] . ' of late payment for ' . $latePayment['payment']);
+            ($this->printOutput)(
+                'Notifying ' . $latePayment['debtor'] . ' of late payment for ' . $latePayment['payment'],
+            );
         }
     }
 

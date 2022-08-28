@@ -5,10 +5,8 @@ declare(strict_types=1);
 
 namespace EventSourcingWorkshop\Exercise\LatePaymentTracking;
 
+use BadMethodCallException;
 use EventSourcingWorkshop\Glue\Application\Kernel;
-use EventSourcingWorkshop\Payment\Domain\Aggregate\Payment;
-use EventSourcingWorkshop\Payment\Domain\Aggregate\PaymentId;
-use EventSourcingWorkshop\Payment\Domain\Amount;
 use Psl\Env;
 use Psl\Type;
 use Throwable;
@@ -18,6 +16,8 @@ use UnexpectedValueException;
  * Usage: ./exercise-05-record-payment.php <non-empty-string $paymentId> <positive-int $amount>
  *
  * Given the ID of a payment, this script will perform the payment for the given amount.
+ *
+ * @psalm-suppress UnusedVariable these variables will be in use once the exercise is complete
  */
 (static function (): void {
     require_once __DIR__ . '/../vendor/autoload.php';
@@ -38,11 +38,11 @@ use UnexpectedValueException;
 
     $kernel->ensureMigrationsRan();
 
-    $repository = $kernel->aggregateRepository(Payment::class);
-
-    $repository->save(
-        $repository
-            ->get(new PaymentId($paymentId))
-            ->pay(new Amount($amount), $kernel->clock->now()),
-    );
+    /**
+     * @TODO 1. fetch the existing {@see Payment} from the {@see AggregateRepository}. Tip: use the $kernel!
+     * @TODO 2. mark the {@see Payment} as paid
+     * @TODO 3. save the result!
+     * @TODO 4. verify the data in the DB
+     */
+    throw new BadMethodCallException('Complete the implementation below and remove this exception');
 })();

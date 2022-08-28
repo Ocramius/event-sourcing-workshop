@@ -22,11 +22,11 @@ use EventSourcingWorkshop\Glue\Application\Kernel;
     /**
      * Here we want to:
      *
-     * 1. write an {@see AbstractMigration} that creates the DB table that will host your projection data, pass
-     *    it to {@see Kernel::ensureMigrationsRan()}.
-     * 2. write a {@see DbTableProjectionDefinition} implementation under ../src/TemperatureTracking/Infrastructure
-     * 3. create a {@see ProcessProjectionOnTable} instance
-     * 4. run it
+     * @TODO 1. write an {@see AbstractMigration} that creates the DB table that will host your projection data, pass
+     *          it to {@see Kernel::ensureMigrationsRan()}.
+     * @TODO 2. write a {@see DbTableProjectionDefinition} implementation under ../src/TemperatureTracking/Infrastructure
+     * @TODO 3. create a {@see ProcessProjectionOnTable} instance
+     * @TODO 4. run it
      */
     throw new BadMethodCallException('Incomplete: remove me once finished with the exercise!');
 })();

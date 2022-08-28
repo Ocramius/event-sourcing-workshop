@@ -19,6 +19,8 @@ use UnexpectedValueException;
  * This script injects an {@see ADayHasPassed} event in the event store: this would be used in
  * a nightly cronjob or such, to record the fact that a day has passed, allowing policies to
  * pick it up and start working from there.
+ *
+ * This script is complete as-is: nothing to adjust here.
  */
 (static function (): void {
     require_once __DIR__ . '/../vendor/autoload.php';

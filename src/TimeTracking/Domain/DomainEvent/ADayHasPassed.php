@@ -12,8 +12,8 @@ use EventSourcingWorkshop\TimeTracking\Domain\Date;
 final class ADayHasPassed implements DomainEvent
 {
     public function __construct(
-        private readonly Date $newDayDate,
-        private readonly DateTimeImmutable $raisedAt,
+        public readonly Date $newDayDate,
+        public readonly DateTimeImmutable $raisedAt,
     ) {
     }
 

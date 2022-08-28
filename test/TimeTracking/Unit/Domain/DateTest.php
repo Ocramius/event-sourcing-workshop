@@ -10,7 +10,7 @@ use Psl\Exception\InvariantViolationException;
 
 /** @covers \EventSourcingWorkshop\TimeTracking\Domain\Date */
 final class DateTest extends TestCase
-{    
+{
     /**
      * @param non-empty-string $date
      *

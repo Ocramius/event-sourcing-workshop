@@ -14,8 +14,6 @@ use EventSourcingWorkshopTest\EventSourcing\Example\Domain\DomainEvent\HelloSaid
  * @psalm-immutable
  *
  * This policy demonstrates how we can automatically fire a {@see SayGoodbye} whenever an {@see HelloSaid} is raised.
- * @psalm-suppress UnusedClass this class is only wired in dependency-injection: in a real-world scenario,
- *                 you should unit-/integration-test it!
  */
 final class WhenHelloSaidThenSayGoodbye implements Policy
 {

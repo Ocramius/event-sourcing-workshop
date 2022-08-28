@@ -49,8 +49,8 @@ final class AggregateChanged
     }
 
     /**
-     * @psalm-param AggregateId<TypedAggregate>                $aggregate
-     * @psalm-param list<AggregateDomainEvent<TypedAggregate>> $raisedEvents
+     * @psalm-param AggregateId<TypedAggregate>                          $aggregate
+     * @psalm-param non-empty-list<AggregateDomainEvent<TypedAggregate>> $raisedEvents
      *
      * @psalm-return self<TypedAggregate>
      *

@@ -1,1 +1,5 @@
+# Build artifacts
+.deptrac.cache
+
+# `vendor/` is inferred from `composer.lock`: don't commit it.
 vendor/

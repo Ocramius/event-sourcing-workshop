@@ -25,12 +25,24 @@ deptrac:
           regex: src/Glue/.*
         - type: directory
           regex: test/Glue/.*
+    - name: Payment
+      collectors:
+        - type: directory
+          regex: src/Payment/.*
+        - type: directory
+          regex: test/Payment/.*
     - name: TemperatureTracking
       collectors:
         - type: directory
           regex: src/TemperatureTracking/.*
         - type: directory
           regex: test/TemperatureTracking/.*
+    - name: TimeTracking
+      collectors:
+        - type: directory
+          regex: src/TimeTracking/.*
+        - type: directory
+          regex: test/TimeTracking/.*
   
   ruleset:
     Commanding: ~
@@ -39,7 +51,12 @@ deptrac:
     Glue:
       - Commanding
       - EventSourcing
+    Payment:
+      - Commanding
+      - EventSourcing
+      - TimeTracking
     TemperatureTracking:
       - Commanding
       - EventSourcing
-      
+    TimeTracking:
+      - EventSourcing

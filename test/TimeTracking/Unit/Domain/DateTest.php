@@ -8,7 +8,7 @@ use EventSourcingWorkshop\TimeTracking\Domain\Date;
 use PHPUnit\Framework\TestCase;
 use Psl\Exception\InvariantViolationException;
 
-/** @covers \EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateChanged */
+/** @covers \EventSourcingWorkshop\TimeTracking\Domain\Date */
 final class DateTest extends TestCase
 {    
     /**

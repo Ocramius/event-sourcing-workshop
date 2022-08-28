@@ -14,7 +14,7 @@ use Throwable;
 use UnexpectedValueException;
 
 /**
- * Usage: ./exercise-05-record-day-passed.php <string $location> <float $celsius>
+ * Usage: ./exercise-05-record-day-passed.php <string (Y-m-d) $date>
  *
  * This script injects an {@see ADayHasPassed} event in the event store: this would be used in
  * a nightly cronjob or such, to record the fact that a day has passed, allowing policies to

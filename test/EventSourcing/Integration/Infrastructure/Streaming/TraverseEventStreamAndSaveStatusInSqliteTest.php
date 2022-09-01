@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSourcingWorkshopTest\EventSourcing\Integration\Infrastructure\Aggregate;
 
 use CuyZ\Valinor\MapperBuilder;
+use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Migration\CreateEventStreamCursorsTable;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Migration\CreateEventStreamTable;
@@ -38,6 +39,7 @@ final class TraverseEventStreamAndSaveStatusInSqliteTest extends TestCase
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
+                ->supportDateFormats(DateTimeImmutable::RFC3339_EXTENDED)
                 ->mapper(),
         );
 

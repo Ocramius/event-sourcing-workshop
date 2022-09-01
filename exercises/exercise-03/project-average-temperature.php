@@ -12,6 +12,7 @@ use EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\DbTableProject
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\ProcessProjectionOnTable;
 use EventSourcingWorkshop\Glue\Application\Kernel;
 use EventSourcingWorkshop\TemperatureTracking\Infrastructure\Migration\AverageTemperaturesTable;
+use EventSourcingWorkshop\TemperatureTracking\Infrastructure\Projection\ProjectAverageTemperatures;
 
 (static function (): void {
     require_once __DIR__ . '/../../vendor/autoload.php';
@@ -29,5 +30,9 @@ use EventSourcingWorkshop\TemperatureTracking\Infrastructure\Migration\AverageTe
      * @TODO 3. create a {@see ProcessProjectionOnTable} instance
      * @TODO 4. run it
      */
-    throw new BadMethodCallException('Incomplete: remove me once finished with the exercise!');
+    ProcessProjectionOnTable::forDefinition(
+        new ProjectAverageTemperatures(),
+        $kernel->db,
+        $kernel->traverseEventStream,
+    )();
 })();

@@ -11,13 +11,14 @@ use Doctrine\Migrations\AbstractMigration;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\DbTableProjectionDefinition;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\ProcessProjectionOnTable;
 use EventSourcingWorkshop\Glue\Application\Kernel;
+use EventSourcingWorkshop\TemperatureTracking\Infrastructure\Migration\AverageTemperaturesTable;
 
 (static function (): void {
     require_once __DIR__ . '/../../vendor/autoload.php';
 
     $kernel = new Kernel();
 
-    $kernel->ensureMigrationsRan(/** @TODO add your own DB migration here! */);
+    $kernel->ensureMigrationsRan([AverageTemperaturesTable::class]);
 
     /**
      * Here we want to:

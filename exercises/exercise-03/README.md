@@ -2,7 +2,7 @@
 
 Target: understanding DB tables as projections, and how to generate them. 
 
-Edit and run [project-last-temperature.php](project-average-temperature.php).
+Edit and run [project-average-temperature.php](project-average-temperature.php).
 
 1. write a DB migration with your own table (see [existing migrations](../../src/EventSourcing/Infrastructure/Migration))
 2. write a [`DbTableProjectionDefinition`](../../src/EventSourcing/Infrastructure/Projection/DbTableProjectionDefinition.php)

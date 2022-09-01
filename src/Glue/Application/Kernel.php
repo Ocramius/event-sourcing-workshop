@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace EventSourcingWorkshop\Glue\Application;
 
 use CuyZ\Valinor\MapperBuilder;
+use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDO\SQLite;
@@ -54,7 +55,8 @@ final class Kernel
 
         $this->clock               = new SystemClock(new DateTimeZone('UTC'));
         $this->deSerializeEvent    = new DeSerializeEventWithValinorMapper(
-            (new MapperBuilder()) // @TODO aggregate ID constructors need some help
+            (new MapperBuilder())
+                ->supportDateFormats(DateTimeImmutable::RFC3339_EXTENDED)
             ->mapper(),
         );
         $this->eventStore          = new SQLiteEventStore($this->db, $this->deSerializeEvent);

@@ -38,6 +38,7 @@ final class SQLiteEventStoreTest extends TestCase
         $this->db                = EventSourcingTestHelper::freshDatabase();
         $this->deserializeEvents = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
+                ->supportDateFormats(DateTimeImmutable::RFC3339_EXTENDED)
                 ->mapper(),
         );
 

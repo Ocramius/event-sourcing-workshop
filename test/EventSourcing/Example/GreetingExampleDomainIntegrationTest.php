@@ -53,6 +53,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         $this->loadEvent = new DeSerializeEventWithValinorMapper(
             (new MapperBuilder())
                 ->registerConstructor([GreetingId::class, 'fromString'])
+                ->supportDateFormats(DateTimeImmutable::RFC3339_EXTENDED)
                 ->mapper(),
         );
 

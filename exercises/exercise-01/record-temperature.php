@@ -33,7 +33,7 @@ use UnexpectedValueException;
     $kernel = new Kernel();
 
     $kernel->ensureMigrationsRan();
-    
+
     /**
      * Here we want to:
      *
@@ -45,6 +45,6 @@ use UnexpectedValueException;
      * Question: what was saved in the DB?
      */
     $kernel->eventStore->save(
-        new TemperatureRecorded($location, $temperature, $kernel->clock->now())
+        new TemperatureRecorded($location, $temperature, $kernel->clock->now()),
     );
 })();

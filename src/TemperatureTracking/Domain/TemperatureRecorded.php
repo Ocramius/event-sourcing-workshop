@@ -12,8 +12,8 @@ final class TemperatureRecorded implements DomainEvent
 {
     /** @param non-empty-string $location */
     public function __construct(
-        public readonly string            $location,
-        public readonly float             $celsius,
+        public readonly string $location,
+        public readonly float $celsius,
         public readonly DateTimeImmutable $raisedAt,
     ) {
     }
@@ -23,6 +23,7 @@ final class TemperatureRecorded implements DomainEvent
         return $this->raisedAt;
     }
 
+    /** {@inheritDoc} */
     public function toArray(): array
     {
         return [

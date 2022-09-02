@@ -11,6 +11,8 @@ use EventSourcingWorkshop\Payment\Infrastructure\CommandHandler\HandleSendNotifi
 use EventSourcingWorkshopTest\EventSourcing\Integration\Support\EventSourcingTestHelper;
 use PHPUnit\Framework\TestCase;
 
+use function assert;
+
 /** @covers \EventSourcingWorkshop\Payment\Infrastructure\CommandHandler\HandleSendNotificationsForLatePayments */
 final class HandleSendNotificationsForLatePaymentsTest extends TestCase
 {
@@ -24,6 +26,9 @@ final class HandleSendNotificationsForLatePaymentsTest extends TestCase
         $late2           = PaymentId::generate();
         $lateButNoDebtor = PaymentId::generate();
         $db              = EventSourcingTestHelper::freshDatabase();
+
+        assert($notLateDate !== false);
+        assert($lateDate !== false);
 
         $db->executeStatement(<<<'SQL'
 CREATE TABLE projection_pending_payments (

@@ -7,7 +7,6 @@ namespace EventSourcingWorkshop\TimeTracking\Domain;
 use DateTimeImmutable;
 use Psl\Exception\InvariantViolationException;
 
-use function assert;
 use function Psl\invariant;
 
 /** @psalm-immutable */
@@ -36,11 +35,6 @@ final class Date
     /** @return non-empty-string */
     public function toString(): string
     {
-        $date = $this->date->format('Y-m-d');
-
-        // Until https://github.com/vimeo/psalm/pull/8350 released, `DateTimeImmutable#format()` produces `string`
-        assert($date !== '');
-
-        return $date;
+        return $this->date->format('Y-m-d');
     }
 }

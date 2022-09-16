@@ -21,7 +21,7 @@
         "cuyz/valinor": "^0.14.0",
         "doctrine/dbal": "^3.4.4",
         "lcobucci/clock": "^2.2",
-        "ramsey/uuid": "^4.5.0"
+        "ramsey/uuid": "^4.5.1"
     },
     "require-dev": {
         "doctrine/coding-standard": "^10.0.0",

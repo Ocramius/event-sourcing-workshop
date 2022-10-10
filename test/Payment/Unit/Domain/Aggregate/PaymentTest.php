@@ -15,7 +15,6 @@ use EventSourcingWorkshop\Payment\Domain\DomainEvent\PaymentRequested;
 use PHPUnit\Framework\TestCase;
 
 use function array_map;
-use function assert;
 use function get_class;
 
 /** @covers \EventSourcingWorkshop\Payment\Domain\Aggregate\Payment */
@@ -44,8 +43,6 @@ final class PaymentTest extends TestCase
     {
         $deadline = (new DateTimeImmutable())->modify('+50 day');
         $id       = PaymentId::generate();
-
-        assert($deadline !== false);
 
         $payment = Payment::fromHistory(
             $id,

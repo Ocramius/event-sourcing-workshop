@@ -49,16 +49,12 @@ final class Payment implements Aggregate
     ): AggregateChanged {
         $id = PaymentId::generate();
 
-        // We hardcode the deadline, for now: good enough for us
-        $deadline = $time->modify('+5 day');
-
-        assert($deadline !== false);
-
         return AggregateChanged::created(
             PaymentId::generate(),
             [
                 new PaymentRequested($id, $debtor, $amount, $time),
-                new PaymentDeadlineSet($id, $deadline, $time),
+                // We hardcode the deadline, for now: good enough for us
+                new PaymentDeadlineSet($id, $time->modify('+5 day'), $time),
             ],
         );
     }

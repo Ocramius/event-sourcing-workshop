@@ -28,7 +28,7 @@
         "doctrine/migrations": "^3.5.2",
         "php-standard-library/psalm-plugin": "^2.0.2",
         "phpunit/phpunit": "^9.5.26",
-        "psalm/plugin-phpunit": "^0.17.0",
+        "psalm/plugin-phpunit": "^0.18.0",
         "qossmic/deptrac-shim": "^1.0.0",
         "roave/infection-static-analysis-plugin": "^1.25.0",
         "symfony/console": "^6.1.7",

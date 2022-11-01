@@ -25,14 +25,14 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^10.0.0",
-        "doctrine/migrations": "^3.5",
-        "php-standard-library/psalm-plugin": "^2.0",
-        "phpunit/phpunit": "^9.5.21",
+        "doctrine/migrations": "^3.5.2",
+        "php-standard-library/psalm-plugin": "^2.0.2",
+        "phpunit/phpunit": "^9.5.26",
         "psalm/plugin-phpunit": "^0.17.0",
         "qossmic/deptrac-shim": "^1.0.0",
-        "roave/infection-static-analysis-plugin": "^1.21",
-        "symfony/console": "^6.1",
-        "vimeo/psalm": "^4.24.0"
+        "roave/infection-static-analysis-plugin": "^1.25.0",
+        "symfony/console": "^6.1.7",
+        "vimeo/psalm": "^4.29.0"
     },
     "config": {
         "sort-packages": true,

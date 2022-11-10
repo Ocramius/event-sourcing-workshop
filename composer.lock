@@ -4150,16 +4150,16 @@
         },
         {
             "name": "sanmai/pipeline",
-            "version": "v6.1",
+            "version": "v6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sanmai/pipeline.git",
-                "reference": "3a88f2617237e18d5cd2aa38ca3d4b22770306c2"
+                "reference": "1c14946cb089776fb024807f1e4f5a985db0ce3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sanmai/pipeline/zipball/3a88f2617237e18d5cd2aa38ca3d4b22770306c2",
-                "reference": "3a88f2617237e18d5cd2aa38ca3d4b22770306c2",
+                "url": "https://api.github.com/repos/sanmai/pipeline/zipball/1c14946cb089776fb024807f1e4f5a985db0ce3c",
+                "reference": "1c14946cb089776fb024807f1e4f5a985db0ce3c",
                 "shasum": ""
             },
             "require": {
@@ -4203,7 +4203,7 @@
             "description": "General-purpose collections pipeline",
             "support": {
                 "issues": "https://github.com/sanmai/pipeline/issues",
-                "source": "https://github.com/sanmai/pipeline/tree/v6.1"
+                "source": "https://github.com/sanmai/pipeline/tree/v6.2"
             },
             "funding": [
                 {
@@ -4211,7 +4211,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-30T08:15:59+00:00"
+            "time": "2022-11-09T05:47:57+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -6485,16 +6485,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.29.0",
+            "version": "4.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3"
+                "reference": "d0bc6e25d89f649e4f36a534f330f8bb4643dd69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3",
-                "reference": "7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d0bc6e25d89f649e4f36a534f330f8bb4643dd69",
+                "reference": "d0bc6e25d89f649e4f36a534f330f8bb4643dd69",
                 "shasum": ""
             },
             "require": {
@@ -6587,9 +6587,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.29.0"
+                "source": "https://github.com/vimeo/psalm/tree/4.30.0"
             },
-            "time": "2022-10-11T17:09:17+00:00"
+            "time": "2022-11-06T20:37:08+00:00"
         },
         {
             "name": "webmozart/assert",

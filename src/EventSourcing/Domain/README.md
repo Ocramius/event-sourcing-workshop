@@ -61,7 +61,7 @@ In this project, you can use the [`EventStore`](./Infrastructure/Persistence/Eve
 to save events:
 
 ```php
-/** @var $clock \StellaMaris\Clock\ClockInterface */
+/** @var $clock \Psr\Clock\ClockInterface */
 /** @var $eventStore \EventSourcingWorkshop\EventSourcing\Infrastructure\Persistence\EventStore */
 $eventStore->save(
     new TemperatureRecorded('roof', $sensors->roof->temperature(), $clock->now()),

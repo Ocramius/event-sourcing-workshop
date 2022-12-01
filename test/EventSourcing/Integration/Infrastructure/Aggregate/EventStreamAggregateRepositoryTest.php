@@ -19,7 +19,7 @@ use EventSourcingWorkshopTest\EventSourcing\Example\Domain\GreetingId;
 use EventSourcingWorkshopTest\EventSourcing\Integration\Support\EventSourcingTestHelper;
 use Lcobucci\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 
 /** @covers \EventSourcingWorkshop\EventSourcing\Infrastructure\Aggregate\EventStreamAggregateRepository */
 final class EventStreamAggregateRepositoryTest extends TestCase

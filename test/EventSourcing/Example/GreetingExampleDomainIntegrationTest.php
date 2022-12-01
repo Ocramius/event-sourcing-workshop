@@ -33,7 +33,7 @@ use Lcobucci\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
 use Psl\Json;
 use Psl\Type;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 
 use function Psl\Type\string;
 

@@ -28,7 +28,7 @@ use EventSourcingWorkshop\EventSourcing\Infrastructure\Serialization\DeSerialize
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Streaming\TraverseEventStream;
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Streaming\TraverseEventStreamAndSaveStatusInSqlite;
 use Lcobucci\Clock\SystemClock;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 

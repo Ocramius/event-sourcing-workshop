@@ -9,7 +9,7 @@ use EventSourcingWorkshop\Commanding\Infrastructure\CommandHandler;
 use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateRepository;
 use EventSourcingWorkshopTest\EventSourcing\Example\Domain\Command\SayGoodbye;
 use EventSourcingWorkshopTest\EventSourcing\Example\Domain\Greeting;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 
 /** @template-implements CommandHandler<SayGoodbye> */
 final class SayGoodbyeHandler implements CommandHandler

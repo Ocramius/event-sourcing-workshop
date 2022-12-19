@@ -36,7 +36,7 @@ RUN apt update \
         php8.1-xsl \
         php8.1-zip \
         \
-        php-xdebug \
+        php8.1-xdebug \
     # Set default PHP version
     && update-alternatives --set php /usr/bin/php8.1 \
     && apt autoremove -y \

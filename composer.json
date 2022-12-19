@@ -25,7 +25,7 @@
         "ramsey/uuid": "^4.6.0"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^10.0.0",
+        "doctrine/coding-standard": "^11.0.0",
         "doctrine/migrations": "^3.5.2",
         "php-standard-library/psalm-plugin": "^2.0.2",
         "phpunit/phpunit": "^9.5.26",

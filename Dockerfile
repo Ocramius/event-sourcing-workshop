@@ -26,19 +26,19 @@ RUN apt update \
         git \
         unzip \
         \
-        php8.1-bcmath \
-        php8.1-cli \
-        php8.1-intl \
-        php8.1-mbstring \
-        php8.1-sqlite3 \
-        php8.1-phpdbg \
-        php8.1-xml \
-        php8.1-xsl \
-        php8.1-zip \
+        php8.2-bcmath \
+        php8.2-cli \
+        php8.2-intl \
+        php8.2-mbstring \
+        php8.2-sqlite3 \
+        php8.2-phpdbg \
+        php8.2-xml \
+        php8.2-xsl \
+        php8.2-zip \
         \
-        php8.1-xdebug \
+        php8.2-xdebug \
     # Set default PHP version
-    && update-alternatives --set php /usr/bin/php8.1 \
+    && update-alternatives --set php /usr/bin/php8.2 \
     && apt autoremove -y \
     && apt clean \
     && git config --global --add safe.directory '*'

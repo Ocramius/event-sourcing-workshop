@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "php": "~8.1.12",
+        "php": "~8.2.0",
         "ext-pdo_sqlite": "*",
         "azjezz/psl": "^2.3.0",
         "cuyz/valinor": "^1.0.0",

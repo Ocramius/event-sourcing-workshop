@@ -69,13 +69,7 @@ final class GreetingExampleDomainIntegrationTest extends TestCase
         /** @var AggregateRepository<Greeting> $aggregateRepository */
         $aggregateRepository = new EventStreamAggregateRepository($this->db, $this->loadEvent);
 
-        $this->clock = new FrozenClock(new DateTimeImmutable());
-
-        /**
-         * @psalm-suppress InvalidArgument this command bus receives non-covariant command handlers: psalm is correctly
-         *                                 identifying that, and attempting to prevent us from getting hurt, but we are
-         *                                 explicitly going down that road here.
-         */
+        $this->clock      = new FrozenClock(new DateTimeImmutable());
         $this->commandBus = new HandleCommandThroughGivenCommandHandlers([
             new SayHelloHandler($aggregateRepository, $this->clock),
             new SayGoodbyeHandler($aggregateRepository, $this->clock),

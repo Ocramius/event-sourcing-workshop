@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55470b3cf3b274ee88a5b44cbcf5f17b",
+    "content-hash": "aa0c69e531ead249e6e6796d6cedf2a9",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -1770,22 +1770,22 @@
         },
         {
             "name": "doctrine/coding-standard",
-            "version": "10.0.0",
+            "version": "11.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/coding-standard.git",
-                "reference": "7903671d7d33c231c8921058b7c14b8f57cbacb7"
+                "reference": "b6660e1e57dd1c0a38d335b7f6495b0c06abc270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/coding-standard/zipball/7903671d7d33c231c8921058b7c14b8f57cbacb7",
-                "reference": "7903671d7d33c231c8921058b7c14b8f57cbacb7",
+                "url": "https://api.github.com/repos/doctrine/coding-standard/zipball/b6660e1e57dd1c0a38d335b7f6495b0c06abc270",
+                "reference": "b6660e1e57dd1c0a38d335b7f6495b0c06abc270",
                 "shasum": ""
             },
             "require": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7",
                 "php": "^7.2 || ^8.0",
-                "slevomat/coding-standard": "^8.2",
+                "slevomat/coding-standard": "^8.6.2",
                 "squizlabs/php_codesniffer": "^3.7"
             },
             "type": "phpcodesniffer-standard",
@@ -1810,6 +1810,7 @@
                 "code",
                 "coding",
                 "cs",
+                "dev",
                 "doctrine",
                 "rules",
                 "sniffer",
@@ -1819,9 +1820,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/coding-standard/issues",
-                "source": "https://github.com/doctrine/coding-standard/tree/10.0.0"
+                "source": "https://github.com/doctrine/coding-standard/tree/11.0.0"
             },
-            "time": "2022-08-26T10:53:05+00:00"
+            "time": "2022-12-11T22:31:43+00:00"
         },
         {
             "name": "doctrine/instantiator",

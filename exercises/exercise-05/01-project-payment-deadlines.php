@@ -12,6 +12,8 @@ use EventSourcingWorkshop\EventSourcing\Infrastructure\Migration\CreateEventStre
 use EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\ProcessProjectionOnTable;
 use EventSourcingWorkshop\Glue\Application\Kernel;
 use EventSourcingWorkshop\Payment\Domain\Aggregate\Payment;
+use EventSourcingWorkshop\Payment\Infrastructure\Migration\CreatePendingPaymentsProjectionTable;
+use EventSourcingWorkshop\Payment\Infrastructure\Projection\TrackPaymentDeadlines;
 
 /**
  * Usage: ./01-project-payment-deadlines.php
@@ -26,24 +28,19 @@ use EventSourcingWorkshop\Payment\Domain\Aggregate\Payment;
     $kernel->ensureMigrationsRan([
         CreateEventStreamTable::class,
         CreateEventStreamCursorsTable::class,
-        // @TODO write this DB migration:
-        // \EventSourcingWorkshop\Payment\Infrastructure\Migration\CreatePendingPaymentsProjectionTable::class,
+        CreatePendingPaymentsProjectionTable::class,
     ]);
 
     /**
-     * @TODO 1. write the {@see \EventSourcingWorkshop\Payment\Infrastructure\Migration\CreatePendingPaymentsProjectionTable}
+     * 1. write the {@see \EventSourcingWorkshop\Payment\Infrastructure\Migration\CreatePendingPaymentsProjectionTable}
      *          projection
-     * @TODO 2. design the {@see \EventSourcingWorkshop\Payment\Infrastructure\Projection\TrackPaymentDeadlines} projection
+     * 2. design the {@see \EventSourcingWorkshop\Payment\Infrastructure\Projection\TrackPaymentDeadlines} projection
      *          definition by implementing {@see \EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\DbTableProjectionDefinition}
-     * @TODO 3. use {@see ProcessProjectionOnTable} to run the projection here
+     * 3. use {@see ProcessProjectionOnTable} to run the projection here
      */
-    throw new BadMethodCallException('Complete the implementation below and remove this exception');
-
-    //ProcessProjectionOnTable::forDefinition(
-    //    // @TODO write this projection definition
-    //    // note: implement \EventSourcingWorkshop\EventSourcing\Infrastructure\Projection\DbTableProjectionDefinition
-    //    new \EventSourcingWorkshop\Payment\Infrastructure\Projection\TrackPaymentDeadlines(),
-    //    $kernel->db,
-    //    $kernel->traverseEventStream,
-    //)();
+    ProcessProjectionOnTable::forDefinition(
+        new TrackPaymentDeadlines(),
+        $kernel->db,
+        $kernel->traverseEventStream,
+    )();
 })();

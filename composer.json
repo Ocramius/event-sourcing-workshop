@@ -22,7 +22,7 @@
         "doctrine/dbal": "^3.5.2",
         "psr/clock": "^1.0.0",
         "lcobucci/clock": "^3.0.0",
-        "ramsey/uuid": "^4.7.0"
+        "ramsey/uuid": "^4.7.1"
     },
     "require-dev": {
         "doctrine/coding-standard": "^11.0.0",

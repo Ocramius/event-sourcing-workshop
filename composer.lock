@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58d21d68102b70c771c9830a63ad84b1",
+    "content-hash": "e6f05c78fdf29798e220c99c0b4603e5",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -6518,7 +6518,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~8.2.0",
+        "php": "~8.2.1",
         "ext-pdo_sqlite": "*"
     },
     "platform-dev": [],

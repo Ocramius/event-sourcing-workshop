@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSourcingWorkshop\EventSourcing\Infrastructure\Persistence;
 
 use DateTimeImmutable;
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Types;
 use EventSourcingWorkshop\EventSourcing\Domain\Aggregate\AggregateChanged;
@@ -63,7 +64,7 @@ final class SQLiteEventStore implements EventStore
         if (array_key_exists('no', $filter)) {
             $whereClauses[]       = 'no IN (:no)';
             $parameters['no']     = $filter['no'];
-            $parameterTypes['no'] = Connection::PARAM_INT_ARRAY;
+            $parameterTypes['no'] = ArrayParameterType::INTEGER;
         }
 
         if (array_key_exists('no_after', $filter)) {
@@ -75,7 +76,7 @@ final class SQLiteEventStore implements EventStore
         if (array_key_exists('event_type', $filter)) {
             $whereClauses[]               = 'event_type IN (:event_type)';
             $parameters['event_type']     = $filter['event_type'];
-            $parameterTypes['event_type'] = Connection::PARAM_STR_ARRAY;
+            $parameterTypes['event_type'] = Connection::STRING;
         }
 
         if (array_key_exists('time_of_recording_after', $filter)) {

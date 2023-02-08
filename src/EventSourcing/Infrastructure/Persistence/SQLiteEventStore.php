@@ -76,7 +76,7 @@ final class SQLiteEventStore implements EventStore
         if (array_key_exists('event_type', $filter)) {
             $whereClauses[]               = 'event_type IN (:event_type)';
             $parameters['event_type']     = $filter['event_type'];
-            $parameterTypes['event_type'] = Connection::STRING;
+            $parameterTypes['event_type'] = ArrayParameterType::STRING;
         }
 
         if (array_key_exists('time_of_recording_after', $filter)) {

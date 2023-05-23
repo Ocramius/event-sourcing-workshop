@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfbf78879bda538273609d01e31f3db3",
+    "content-hash": "32377699529620374ffd5899c1faf2ef",
     "packages": [
         {
             "name": "azjezz/psl",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/azjezz/psl.git",
-                "reference": "0b1eac31dfb86209043397d6f86271faa3db87ee"
+                "reference": "97341582b555c18ac9f46f7958fda47358f2190a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/azjezz/psl/zipball/0b1eac31dfb86209043397d6f86271faa3db87ee",
-                "reference": "0b1eac31dfb86209043397d6f86271faa3db87ee",
+                "url": "https://api.github.com/repos/azjezz/psl/zipball/97341582b555c18ac9f46f7958fda47358f2190a",
+                "reference": "97341582b555c18ac9f46f7958fda47358f2190a",
                 "shasum": ""
             },
             "require": {
@@ -70,7 +70,7 @@
             "description": "PHP Standard Library",
             "support": {
                 "issues": "https://github.com/azjezz/psl/issues",
-                "source": "https://github.com/azjezz/psl/tree/2.5.0"
+                "source": "https://github.com/azjezz/psl/tree/2.6.0"
             },
             "funding": [
                 {
@@ -78,7 +78,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-03-17T11:52:46+00:00"
+            "time": "2023-05-18T10:12:44+00:00"
         },
         {
             "name": "brick/math",
@@ -992,16 +992,16 @@
         },
         {
             "name": "revolt/event-loop",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/revoltphp/event-loop.git",
-                "reference": "81dd825a0a7fa7a39cae25ef731bb944f3e18295"
+                "reference": "9ac31d36635c60a9b28bb2a476384c5ec55c95cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/revoltphp/event-loop/zipball/81dd825a0a7fa7a39cae25ef731bb944f3e18295",
-                "reference": "81dd825a0a7fa7a39cae25ef731bb944f3e18295",
+                "url": "https://api.github.com/repos/revoltphp/event-loop/zipball/9ac31d36635c60a9b28bb2a476384c5ec55c95cc",
+                "reference": "9ac31d36635c60a9b28bb2a476384c5ec55c95cc",
                 "shasum": ""
             },
             "require": {
@@ -1058,9 +1058,9 @@
             ],
             "support": {
                 "issues": "https://github.com/revoltphp/event-loop/issues",
-                "source": "https://github.com/revoltphp/event-loop/tree/v1.0.0"
+                "source": "https://github.com/revoltphp/event-loop/tree/v1.0.1"
             },
-            "time": "2022-11-02T21:46:22+00:00"
+            "time": "2023-04-02T16:25:26+00:00"
         }
     ],
     "packages-dev": [

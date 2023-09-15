@@ -1,5 +1,5 @@
 FROM ubuntu:22.04 AS base-distro
-FROM composer:2.6.2 AS vendor-dependencies
+FROM composer:2.6.3 AS vendor-dependencies
 
 COPY composer.json \
     composer.lock \

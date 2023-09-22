@@ -19,7 +19,7 @@
         "ext-pdo_sqlite": "*",
         "azjezz/psl": "^2.7.0",
         "cuyz/valinor": "^1.6.0",
-        "doctrine/dbal": "^3.6.6",
+        "doctrine/dbal": "^3.6.7",
         "psr/clock": "^1.0.0",
         "lcobucci/clock": "^3.1.0",
         "ramsey/uuid": "^4.7.4"

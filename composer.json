@@ -17,7 +17,7 @@
     "require": {
         "php": "~8.2.1",
         "ext-pdo_sqlite": "*",
-        "azjezz/psl": "^2.7.0",
+        "azjezz/psl": "^2.8.0",
         "cuyz/valinor": "^1.7.0",
         "doctrine/dbal": "^3.7.2",
         "psr/clock": "^1.0.0",

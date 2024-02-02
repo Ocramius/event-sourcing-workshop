@@ -18,7 +18,7 @@
         "php": "~8.2.1",
         "ext-pdo_sqlite": "*",
         "azjezz/psl": "^2.9.0",
-        "cuyz/valinor": "^1.8.2",
+        "cuyz/valinor": "^1.9.0",
         "doctrine/dbal": "^3.8.0",
         "psr/clock": "^1.0.0",
         "lcobucci/clock": "^3.2.0",

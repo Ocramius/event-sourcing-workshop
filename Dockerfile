@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 AS base-distro
+FROM ubuntu:24.04 AS base-distro
 FROM composer:2.7.7 AS vendor-dependencies
 
 COPY composer.json \

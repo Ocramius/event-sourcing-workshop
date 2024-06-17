@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Build docker containers"
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           load: true
           file: Dockerfile

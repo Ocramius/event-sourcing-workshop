@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14375695b78669ed953374d4ca33b0b9",
+    "content-hash": "49b8984dce6441cfec93b5b22bd5e078",
     "packages": [
         {
             "name": "azjezz/psl",
-            "version": "2.9.1",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/azjezz/psl.git",
-                "reference": "1ade4f1a99fe07a8e06f8dee596609aa07585422"
+                "reference": "14ad277e8c97a9df3518361c83acc1d456ea7db3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/azjezz/psl/zipball/1ade4f1a99fe07a8e06f8dee596609aa07585422",
-                "reference": "1ade4f1a99fe07a8e06f8dee596609aa07585422",
+                "url": "https://api.github.com/repos/azjezz/psl/zipball/14ad277e8c97a9df3518361c83acc1d456ea7db3",
+                "reference": "14ad277e8c97a9df3518361c83acc1d456ea7db3",
                 "shasum": ""
             },
             "require": {
@@ -26,27 +26,26 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-sodium": "*",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
-                "revolt/event-loop": "^1.0.1"
+                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+                "revolt/event-loop": "^1.0.6"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.22.0",
-                "php-coveralls/php-coveralls": "^2.6.0",
-                "php-standard-library/psalm-plugin": "^2.2.1",
-                "phpbench/phpbench": "^1.2.14",
-                "phpunit/phpunit": "^9.6.10",
-                "roave/infection-static-analysis-plugin": "^1.32.0",
-                "squizlabs/php_codesniffer": "^3.7.2",
-                "vimeo/psalm": "^5.13.1"
+                "php-coveralls/php-coveralls": "^2.7.0",
+                "php-standard-library/psalm-plugin": "^2.3.0",
+                "phpbench/phpbench": "^1.2.15",
+                "phpunit/phpunit": "^9.6.18",
+                "roave/infection-static-analysis-plugin": "^1.35.0",
+                "vimeo/psalm": "^5.23.1"
             },
             "suggest": {
+                "php-standard-library/phpstan-extension": "PHPStan integration",
                 "php-standard-library/psalm-plugin": "Psalm integration"
             },
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "hhvm/hsl",
-                    "url": "https://github.com/hhvm/hsl"
+                    "url": "https://github.com/hhvm/hsl",
+                    "name": "hhvm/hsl"
                 }
             },
             "autoload": {
@@ -70,7 +69,7 @@
             "description": "PHP Standard Library",
             "support": {
                 "issues": "https://github.com/azjezz/psl/issues",
-                "source": "https://github.com/azjezz/psl/tree/2.9.1"
+                "source": "https://github.com/azjezz/psl/tree/3.2.0"
             },
             "funding": [
                 {
@@ -78,7 +77,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-05T05:18:37+00:00"
+            "time": "2025-01-23T06:25:16+00:00"
         },
         {
             "name": "brick/math",
@@ -6363,13 +6362,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "~8.2.1",
         "ext-pdo_sqlite": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
